@@ -39,6 +39,34 @@
   },
   {
     "index": 2,
+    "name": "Veermata Jijabai Technological Institute (VJTI) Mumbai",
+    "address": "H. R. Mahajani Rd, Matunga, Mumbai, Maharashtra 400019",
+    "image": "../../assets/vjti.png",
+    "established": "1887",
+    "intake": "550+",
+    "description": "VJTI Mumbai is one of the oldest and most prestigious engineering colleges in India, known for its quality education, research, and strong alumni network. It is an autonomous institute affiliated with the University of Mumbai.",
+    "programs": ["B.Tech", "M.Tech", "Diploma", "Ph.D."],
+    "branches": [
+      "Computer Engineering",
+      "Information Technology",
+      "Electronics and Telecommunication Engineering",
+      "Electronics Engineering",
+      "Electrical Engineering",
+      "Mechanical Engineering",
+      "Production Engineering",
+      "Civil Engineering",
+      "Textile Engineering"
+    ],
+    "highlights": [
+      "Established in 1887",
+      "Autonomous Institute",
+      "Strong Alumni Base",
+      "Cutting-edge Research and Innovation"
+    ],
+    "whatsappGroup": "https://chat.whatsapp.com/exampleVJTI"
+  },
+  {
+    "index": 3,
     "name": "Pune Institute of Computer Technology (PICT) Pune",
     "address": "Survey No. 27, Near Trimurti Chowk, Bharati Vidhyapith Campus, Dhankawadi, Pune, Maharashtra 411043",
     "image": "../../assets/pict.jpg",
@@ -63,7 +91,7 @@
     "whatsappGroup": "https://chat.whatsapp.com/L77GRbsRTecJkb0ByBnPiE"
   },
   {
-    "index": 3,
+    "index": 4,
     "name": "Walchand College of Engineering (WCE) Sangli",
     "address": "Walchand Hirachand Marg, Government Colony, Vishrambag, Sangli, Maharashtra 416415",
     "image": "../../assets/walchand.jpg",
@@ -91,7 +119,7 @@
     "whatsappGroup": "https://chat.whatsapp.com/KB80VEFm2VdCqv6l36ofNT"
   },
   {
-    "index": 4,
+    "index": 5,
     "name": "Cummins College of Engineering for Women Pune",
     "address": "Cummins College Rd, Karve Nagar, Pune, Maharashtra 411052",
     "image": "../../assets/cumines.jpg",
@@ -116,7 +144,7 @@
     "whatsappGroup": "https://chat.whatsapp.com/BiYba2XkGBw6ax5Abwpo1N"
   },
   {
-    "index": 5,
+    "index": 6,
     "name": "Vishwakarma Institute of Technology (VIT) Pune",
     "address": "Upper Indira Nagar, Bibwewadi, Pune, Maharashtra 411037",
     "image": "../../assets/vit.jpg",
@@ -154,7 +182,7 @@
     "whatsappGroup": "https://chat.whatsapp.com/LjUYKSpKFSi0aN09hpcBPS"
   },
   {
-    "index": 6,
+    "index": 7,
     "name": "Pimpri Chinchwad College of Engineering (PCCOE) Pune",
     "address": "Sector 26, Pradhikaran, Nigdi, Pune, Maharashtra 411044",
     "image": "../../assets/pccoe.jpg",
@@ -181,7 +209,7 @@
     "whatsappGroup": "https://chat.whatsapp.com/JhY1s9beKDNExTgevoV2Ls"
   },
   {
-    "index": 7,
+    "index": 8,
     "name": "Dr. D. Y. Patil Institute of Technology (DYPIT) Pune",
     "address": "Sant Tukaram Nagar, Pimpri Colony, Pune, Maharashtra 411018",
     "image": "../../assets/dpu.jpg",
@@ -207,33 +235,5 @@
       "Modern Campus Facilities"
     ],
     "whatsappGroup": "https://chat.whatsapp.com/JaiqCJKk4EAKNjbeA9GD20"
-  },
-  {
-    "index": 8,
-    "name": "Veermata Jijabai Technological Institute (VJTI) Mumbai",
-    "address": "H. R. Mahajani Rd, Matunga, Mumbai, Maharashtra 400019",
-    "image": "../../assets/vjti.png",
-    "established": "1887",
-    "intake": "550+",
-    "description": "VJTI Mumbai is one of the oldest and most prestigious engineering colleges in India, known for its quality education, research, and strong alumni network. It is an autonomous institute affiliated with the University of Mumbai.",
-    "programs": ["B.Tech", "M.Tech", "Diploma", "Ph.D."],
-    "branches": [
-      "Computer Engineering",
-      "Information Technology",
-      "Electronics and Telecommunication Engineering",
-      "Electronics Engineering",
-      "Electrical Engineering",
-      "Mechanical Engineering",
-      "Production Engineering",
-      "Civil Engineering",
-      "Textile Engineering"
-    ],
-    "highlights": [
-      "Established in 1887",
-      "Autonomous Institute",
-      "Strong Alumni Base",
-      "Cutting-edge Research and Innovation"
-    ],
-    "whatsappGroup": "https://chat.whatsapp.com/exampleVJTI"
   }
 ]
