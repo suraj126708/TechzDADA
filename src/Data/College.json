@@ -1,0 +1,239 @@
+[
+  {
+    "index": 1,
+    "name": "COEP Technological University Pune",
+    "address": "Wellesley Rd, Shivajinagar, Pune, Maharashtra 411005",
+    "image": "../../assets/coep.jpg",
+    "established": "1854",
+    "intake": "700+",
+    "description": "COEP Technological University, formerly known as College of Engineering Pune, is one of the oldest and most prestigious engineering institutions in India. It has a legacy of innovation, academic excellence, and leadership in engineering education.",
+    "programs": [
+      "B.Tech",
+      "SEDA (Direct Second Year Admission)",
+      "M.Tech",
+      "MBA",
+      "Ph.D.",
+      "PG Diploma"
+    ],
+    "branches": [
+      "Computer Science and Engineering",
+      "Information Technology",
+      "Electronics and Telecommunication Engineering",
+      "Mechanical Engineering",
+      "Metallurgical Engineering",
+      "Production Engineering (Sandwich)",
+      "Manufacturing Science and Engineering",
+      "Civil Engineering",
+      "Electrical Engineering",
+      "Metallurgy and Material Technology",
+      "Instrumentation and Control Engineering"
+    ],
+    "highlights": [
+      "Third Oldest Engineering College in India",
+      "Unitary Public University",
+      "Strong Alumni Network",
+      "Research and Innovation Hubs",
+      "Hostels are available"
+    ],
+    "whatsappGroup": "https://chat.whatsapp.com/KRwgjOcjeVX7hD24FTbJmK"
+  },
+  {
+    "index": 2,
+    "name": "Pune Institute of Computer Technology (PICT) Pune",
+    "address": "Survey No. 27, Near Trimurti Chowk, Bharati Vidhyapith Campus, Dhankawadi, Pune, Maharashtra 411043",
+    "image": "../../assets/pict.jpg",
+    "established": "1983",
+    "intake": "900+",
+    "description": "PICT Pune is an autonomous renowned college known for its focus on computer science and related fields. It offers quality education in engineering and has a strong placement record, especially in the IT sector.",
+    "programs": ["B.Tech", "M.Tech"],
+    "branches": [
+      "Computer Engineering",
+      "Information Technology",
+      "Electronics and Telecommunication Engineering",
+      "Artificial Intelligence and Data Science",
+      "Electronics and Computer Engineering"
+    ],
+    "highlights": [
+      "High Placement Rates",
+      "Specialization in Computer Science",
+      "Active Student Chapters",
+      "Strong Alumni Network",
+      "On- campus hostels are available"
+    ],
+    "whatsappGroup": "https://chat.whatsapp.com/L77GRbsRTecJkb0ByBnPiE"
+  },
+  {
+    "index": 3,
+    "name": "Walchand College of Engineering (WCE) Sangli",
+    "address": "Walchand Hirachand Marg, Government Colony, Vishrambag, Sangli, Maharashtra 416415",
+    "image": "../../assets/walchand.jpg",
+    "established": "1947",
+    "intake": "900+",
+    "description": "WCE Sangli is a government-aided autonomous institute affiliated with Shivaji University. It has a long-standing reputation for excellence in engineering education and research.",
+    "programs": ["B.Tech", "M.Tech", "Ph.D."],
+    "branches": [
+      "Computer Science and Engineering",
+      "Electronics Engineering",
+      "Mechanical Engineering",
+      "Civil Engineering",
+      "Electrical Engineering",
+      "Information Technology",
+      "Artificial Intelligence and Machine Learning",
+      "Robotics and Automation"
+    ],
+    "highlights": [
+      "Autonomous Status",
+      "Government-Aided",
+      "Strong Research Focus",
+      "Experienced Faculty",
+      "Hostels are available"
+    ],
+    "whatsappGroup": "https://chat.whatsapp.com/KB80VEFm2VdCqv6l36ofNT"
+  },
+  {
+    "index": 4,
+    "name": "Cummins College of Engineering for Women Pune",
+    "address": "Cummins College Rd, Karve Nagar, Pune, Maharashtra 411052",
+    "image": "../../assets/cumines.jpg",
+    "established": "1991",
+    "intake": "600+",
+    "description": "Cummins College is the first all-women autonomous engineering college in India, established with the support of Cummins Diesel (India) Foundation. It aims to empower women through quality technical education.",
+    "programs": ["B.Tech", "M.Tech", "Ph.D. (ENTC)"],
+    "branches": [
+      "Computer Engineering",
+      "Information Technology",
+      "Electronics and Telecommunication Engineering",
+      "Instrumentation and Control Engineering",
+      "Mechanical Engineering"
+    ],
+    "highlights": [
+      "First All-Women Engineering College",
+      "Empowerment Through Education",
+      "Support from Cummins Foundation",
+      "Focus on Holistic Development",
+      "Hostels are available"
+    ],
+    "whatsappGroup": "https://chat.whatsapp.com/BiYba2XkGBw6ax5Abwpo1N"
+  },
+  {
+    "index": 5,
+    "name": "Vishwakarma Institute of Technology (VIT) Pune",
+    "address": "Upper Indira Nagar, Bibwewadi, Pune, Maharashtra 411037",
+    "image": "../../assets/vit.jpg",
+    "established": "1983",
+    "intake": "3700+",
+    "description": "VIT Pune is a premier private engineering institute affiliated with Savitribai Phule Pune University. It offers a range of undergraduate and postgraduate programs and is known for its strong academic curriculum and industry-oriented training. It is Autonomous since AY 2008-09, valid till 2030",
+    "programs": [
+      "B.Tech",
+      "SEDA (Direct Second Year Admission)",
+      "Ph.D. (Mechanical Engineering)",
+      "Ph.D. (Electronics and Telecommunication Engineering)",
+      "Ph.D. (Computer Engineering)"
+    ],
+    "branches": [
+      "Computer Engineering",
+      "Information Technology",
+      "Computer Science (AI)",
+      "Computer Science and Engineering (AI/ML)",
+      "Artificial Intelligence and Data Science (AI & DS)",
+      "Computer Science (Software Engineering)",
+      "Computer Science and Engineering (Data Science)",
+      "Computer Science and Engineering (IoT and Cyber Security)",
+      "Electronics and Telecommunication Engineering",
+      "Instrumentation and Control Engineering",
+      "Mechanical Engineering",
+      "Civil Engineering"
+    ],
+    "highlights": [
+      "NAAC A++ Accreditation",
+      "Strong Placement Record",
+      "Industry Collaborations",
+      "Research and Innovation Centers",
+      "Hostel are available"
+    ],
+    "whatsappGroup": "https://chat.whatsapp.com/LjUYKSpKFSi0aN09hpcBPS"
+  },
+  {
+    "index": 6,
+    "name": "Pimpri Chinchwad College of Engineering (PCCOE) Pune",
+    "address": "Sector 26, Pradhikaran, Nigdi, Pune, Maharashtra 411044",
+    "image": "../../assets/pccoe.jpg",
+    "established": "1999",
+    "intake": "700+",
+    "description": "PCCOE is an autonomous institute affiliated with Savitribai Phule Pune University. It offers a variety of engineering programs and is known for its emphasis on research and innovation.",
+    "programs": ["B.Tech", "M.Tech", "B.Voc", "Diploma", "Architecture"],
+    "branches": [
+      "Computer Engineering",
+      "Computer Engineering (AIML)",
+      "Electronics and Telecommunication Engineering",
+      "Computer Engineering (Regional Language)",
+      "Mechanical Engineering",
+      "Civil Engineering",
+      "Information Technology"
+    ],
+    "highlights": [
+      "Autonomous Status",
+      "Strong Industry Linkages",
+      "Research-Oriented Programs",
+      "Modern Infrastructure",
+      "Hostels available"
+    ],
+    "whatsappGroup": "https://chat.whatsapp.com/JhY1s9beKDNExTgevoV2Ls"
+  },
+  {
+    "index": 7,
+    "name": "Dr. D. Y. Patil Institute of Technology (DYPIT) Pune",
+    "address": "Sant Tukaram Nagar, Pimpri Colony, Pune, Maharashtra 411018",
+    "image": "../../assets/dpu.jpg",
+    "established": "1983",
+    "intake": "1100+",
+    "description": "DYPIT is part of the Dr. D. Y. Patil Group and offers a range of engineering and management programs. The institute focuses on holistic development and industry readiness.",
+    "programs": ["B.E.", "M.E."],
+    "branches": [
+      "Computer Engineering",
+      "Information Technology",
+      "Artificial Intelligence and Data Science",
+      "Electronics and Telecommunication Engineering",
+      "Electrical Engineering",
+      "Mechanical Engineering",
+      "Civil Engineering",
+      "Automation and Robotics",
+      "Instrumentation Engineering"
+    ],
+    "highlights": [
+      "Part of D. Y. Patil Group",
+      "Comprehensive Programs",
+      "Focus on Industry Readiness",
+      "Modern Campus Facilities"
+    ],
+    "whatsappGroup": "https://chat.whatsapp.com/JaiqCJKk4EAKNjbeA9GD20"
+  },
+  {
+    "index": 8,
+    "name": "Veermata Jijabai Technological Institute (VJTI) Mumbai",
+    "address": "H. R. Mahajani Rd, Matunga, Mumbai, Maharashtra 400019",
+    "image": "../../assets/vjti.png",
+    "established": "1887",
+    "intake": "550+",
+    "description": "VJTI Mumbai is one of the oldest and most prestigious engineering colleges in India, known for its quality education, research, and strong alumni network. It is an autonomous institute affiliated with the University of Mumbai.",
+    "programs": ["B.Tech", "M.Tech", "Diploma", "Ph.D."],
+    "branches": [
+      "Computer Engineering",
+      "Information Technology",
+      "Electronics and Telecommunication Engineering",
+      "Electronics Engineering",
+      "Electrical Engineering",
+      "Mechanical Engineering",
+      "Production Engineering",
+      "Civil Engineering",
+      "Textile Engineering"
+    ],
+    "highlights": [
+      "Established in 1887",
+      "Autonomous Institute",
+      "Strong Alumni Base",
+      "Cutting-edge Research and Innovation"
+    ],
+    "whatsappGroup": "https://chat.whatsapp.com/exampleVJTI"
+  }
+]
