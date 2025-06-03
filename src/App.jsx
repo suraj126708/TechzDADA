@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "./App.css";
 import UserRoute from "./UserRoute";
-import { Analytics } from "@vercel/analytics/next"; // Import Analytics
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   return (
