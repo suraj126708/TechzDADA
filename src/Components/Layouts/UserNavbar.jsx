@@ -7,7 +7,7 @@ const UserNavbar = () => {
         <div className="flex justify-between h-16 items-center">
           {/* Logo Section */}
           <Link to="/" className="flex items-center space-x-2">
-            <span className="text-2xl text-orange-950 font-bold">
+            <span className="text-xl text-orange-950 font-bold">
               Techz DADA
             </span>
           </Link>

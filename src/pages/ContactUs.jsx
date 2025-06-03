@@ -117,7 +117,7 @@ const ContactUs = () => {
                 <input
                   type="hidden"
                   name="_next"
-                  value="http://localhost:5173/thank-you"
+                  value="https://www.techzdada.in/thank-you"
                 />
 
                 <div>
