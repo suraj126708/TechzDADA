@@ -14,8 +14,8 @@ function App() {
           <Route path="/*" element={<UserRoute />} />
         </Routes>
       </BrowserRouter>
-      <ToastContainer />
       <Analytics />
+      <ToastContainer />
     </div>
   );
 }
