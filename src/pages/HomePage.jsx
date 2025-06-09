@@ -121,7 +121,7 @@ const HomePage = () => {
               <span className="text-orange-500">College Pe चर्चा?</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Were more than just a platform - were your bridge to informed
+              We're more than just a platform - were your bridge to informed
               college decisions
             </p>
           </div>

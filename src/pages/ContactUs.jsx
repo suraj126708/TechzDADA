@@ -1,17 +1,25 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Mail, Instagram, Send, MapPin } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import UserNavbar from "../Components/Layouts/UserNavbar";
 import Footer from "../Components/Layouts/Footer";
 import DecorativeElements from "../Components/DecorativeElements";
-import { handleError, handleSuccess } from "../utils";
-import { useRef } from "react";
+import { useForm } from "@formspree/react";
+import { useNavigate } from "react-router-dom";
+import { set } from "react-hook-form";
 
 const ContactUs = () => {
+  const [state, submitToFormspree] = useForm("manjeepj");
+  const [formMessage, setFormMessage] = useState({ type: "", text: "" });
+  const formRef = useRef(null);
+  const navigate = useNavigate();
+
   const contactInfo = [
     {
       icon: <Mail className="h-6 w-6" />,
       title: "Email Us",
       details: "techzdada11@gmail.com",
+      link: "mailto:techzdada11@gmail.com",
     },
     {
       icon: <Instagram className="h-6 w-6" />,
@@ -26,27 +34,43 @@ const ContactUs = () => {
     },
   ];
 
-  const formRef = useRef(null);
-
+  // Custom submit handler for instant feedback
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const form = formRef.current;
-    const formData = new FormData(form);
+
+    setFormMessage({ type: "loading", text: "Sending message..." });
 
     try {
-      await fetch("https://formsubmit.co/techzdada11@gmail.com", {
-        method: "POST",
-        body: formData,
-      });
-      handleSuccess(
-        "Message sent successfully! we will try to respond as soon as possible."
-      );
-      form.reset();
+      await submitToFormspree(e);
     } catch (error) {
-      console.error("Error sending message:", error);
-      handleError("Failed to send message. Please try again later.");
+      setFormMessage({
+        type: "error",
+        text: "Failed to send message. Please try again later.",
+      });
     }
   };
+
+  // Handle Formspree response states
+  useEffect(() => {
+    if (state.succeeded) {
+      setFormMessage({
+        type: "success",
+        text: "Message sent successfully! We will try to respond as soon as possible.",
+      });
+      formRef.current?.reset();
+      setTimeout(() => {
+        setFormMessage({ type: "", text: "" });
+        navigate("/");
+      }, 2000);
+    }
+
+    if (state.errors && state.errors.length > 0) {
+      setFormMessage({
+        type: "error",
+        text: "Failed to send message. Please try again later.",
+      });
+    }
+  }, [state.succeeded, state.errors]);
 
   return (
     <div className="min-h-screen bg-white text-gray-800">
@@ -92,13 +116,18 @@ const ContactUs = () => {
                         <h3 className="font-semibold text-gray-800">
                           {info.title}
                         </h3>
-                        <a
-                          href={info.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
+                        {info.link ? (
+                          <a
+                            href={info.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-gray-600 hover:text-[#f68014] transition-colors duration-200"
+                          >
+                            {info.details}
+                          </a>
+                        ) : (
                           <p className="text-gray-600">{info.details}</p>
-                        </a>
+                        )}
                       </div>
                     </div>
                   ))}
@@ -111,15 +140,33 @@ const ContactUs = () => {
               <h2 className="text-2xl font-bold mb-6 text-gray-800">
                 Send us a Message
               </h2>
-              <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
-                {/* Optional hidden fields */}
-                <input type="hidden" name="_captcha" value="false" />
-                <input
-                  type="hidden"
-                  name="_next"
-                  value="https://www.techzdada.in/thank-you"
-                />
 
+              {/* Form Message */}
+              {formMessage.text && (
+                <div
+                  className={`mb-6 p-4 rounded-lg border ${
+                    formMessage.type === "success"
+                      ? "bg-green-50 border-green-200"
+                      : formMessage.type === "error"
+                      ? "bg-red-50 border-red-200"
+                      : "bg-blue-50 border-blue-200"
+                  }`}
+                >
+                  <p
+                    className={`${
+                      formMessage.type === "success"
+                        ? "text-green-800"
+                        : formMessage.type === "error"
+                        ? "text-red-800"
+                        : "text-blue-800"
+                    }`}
+                  >
+                    {formMessage.text}
+                  </p>
+                </div>
+              )}
+
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label
                     htmlFor="name"
@@ -132,7 +179,8 @@ const ContactUs = () => {
                     id="name"
                     name="name"
                     required
-                    className="w-full bg-white px-4 py-3 rounded-lg border border-orange-200 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300"
+                    disabled={state.submitting}
+                    className="w-full bg-white px-4 py-3 rounded-lg border border-orange-200 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                 </div>
 
@@ -148,7 +196,8 @@ const ContactUs = () => {
                     id="email"
                     name="email"
                     required
-                    className="w-full bg-white px-4 py-3 rounded-lg border border-orange-200 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300"
+                    disabled={state.submitting}
+                    className="w-full bg-white px-4 py-3 rounded-lg border border-orange-200 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                 </div>
 
@@ -164,15 +213,17 @@ const ContactUs = () => {
                     name="message"
                     rows="4"
                     required
-                    className="w-full bg-white px-4 py-3 rounded-lg border border-orange-200 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300"
+                    disabled={state.submitting}
+                    className="w-full bg-white px-4 py-3 rounded-lg border border-orange-200 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   ></textarea>
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full px-8 py-4 bg-[#f68014] rounded-full font-semibold text-lg text-white hover:shadow-2xl hover:shadow-orange-500/25 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+                  disabled={state.submitting}
+                  className="w-full px-8 py-4 bg-[#f68014] rounded-full font-semibold text-lg text-white hover:shadow-2xl hover:shadow-orange-500/25 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
-                  Send Message
+                  {state.submitting ? "Sending..." : "Send Message"}
                   <Send className="h-5 w-5" />
                 </button>
               </form>
