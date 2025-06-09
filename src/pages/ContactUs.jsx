@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 import { Mail, Instagram, Send, MapPin } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -6,10 +7,9 @@ import Footer from "../Components/Layouts/Footer";
 import DecorativeElements from "../Components/DecorativeElements";
 import { useForm } from "@formspree/react";
 import { useNavigate } from "react-router-dom";
-import { set } from "react-hook-form";
 
 const ContactUs = () => {
-  const [state, submitToFormspree] = useForm("manjeepj");
+  const [state, submitToFormspree] = useForm("mjkrywvk");
   const [formMessage, setFormMessage] = useState({ type: "", text: "" });
   const formRef = useRef(null);
   const navigate = useNavigate();
