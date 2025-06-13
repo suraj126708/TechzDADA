@@ -6,6 +6,7 @@ import "./App.css";
 import HomePage from "./pages/HomePage";
 import CollegeInfo from "./pages/CollegeInfo";
 import ContactUs from "./pages/ContactUs";
+import GetColleges from "./pages/GetColleges";
 
 function UserRoute() {
   return (
@@ -15,6 +16,7 @@ function UserRoute() {
           <Route path="/college/:name" element={<CollegeInfo />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/contact" element={<ContactUs />} />
+          <Route path="/Get-colleges" element={<GetColleges />} />
         </Routes>
         <ToastContainer />
       </div>
