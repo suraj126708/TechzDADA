@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
-import CAP01 from "../data/CAP_01.json";
-import CAP02 from "../data/CAP_02.json";
-import CAP03 from "../data/CAP_03.json";
+import CAP01 from "../Data/CAP_01.json";
+import CAP02 from "../Data/CAP_02.json";
+import CAP03 from "../Data/CAP_03.json";
+
 import {
   Search,
   Filter,
@@ -706,7 +707,7 @@ function PercentileDisplay() {
                             <div className="text-xs font-medium opacity-90">
                               Best Closing
                             </div>
-                            <div className="text-lg font-bold">
+                            <div className="text-lg text-left font-bold">
                               {college.closingPercentile.toFixed(1)}
                             </div>
                           </div>
