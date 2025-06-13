@@ -7,9 +7,10 @@ import {
   MessageCircle,
   Play,
   ExternalLink,
-  BookOpen,
+  List,
   Heart,
   Shield,
+  GraduationCap,
 } from "lucide-react";
 import UserNavbar from "../Components/Layouts/UserNavbar";
 import CollegeSection from "../Components/Sections/CollegeSection";
@@ -42,16 +43,16 @@ const HomePage = () => {
         "Get authentic insights about college life, academics, and placements",
     },
     {
-      icon: <BookOpen className="h-8 w-8" />,
-      title: "Admission Guidance",
-      description:
-        "Step-by-step guidance for entrance exams and admission procedures",
-    },
-    {
       icon: <Shield className="h-8 w-8" />,
       title: "Verified Students",
       description:
         "All our Seniors are verified with proper college credentials",
+    },
+    {
+      icon: <List className="h-8 w-8" />,
+      title: "Percentile to College List",
+      description:
+        "Get a curated list of colleges based on your entrance exam percentile",
     },
   ];
 
@@ -59,7 +60,6 @@ const HomePage = () => {
     <div className="min-h-screen text-gray-800 overflow-hidden">
       {/* Hero Section */}
       <UserNavbar />
-
       <section className="relative min-h-[90vh] flex items-center justify-center px-4">
         <div className="absolute inset-0 bg-orange-50"></div>
         <div className="absolute inset-0">
@@ -99,20 +99,18 @@ const HomePage = () => {
             </a>
 
             <a
-              href="https://www.instagram.com/share/BAKiLSAxW0"
+              href="/get-colleges"
               target="_blank"
               rel="noopener noreferrer"
               className="group px-8 py-4 bg-white border border-orange-200 rounded-full font-semibold text-lg text-orange-600 hover:bg-orange-50 transition-all duration-300 flex items-center gap-2"
             >
-              <Play className="h-5 w-5" />
-              Watch Our Story
+              <GraduationCap className="h-7 w-7" />
+              College Prediction
             </a>
           </div>
         </div>
       </section>
-
       <DecorativeElements.LinePattern />
-
       {/* Features Section */}
       <section className="py-20 px-4 relative bg-orange-50">
         <div className="max-w-7xl mx-auto">
@@ -147,9 +145,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-
       <DecorativeElements.LinePattern />
-
       {/* How It Works */}
       <section className="py-20 px-4 bg-orange-50">
         <div className="max-w-6xl mx-auto">
@@ -200,14 +196,9 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-
       <DecorativeElements.LinePattern />
-
       <CollegeSection />
-
-      <DecorativeElements.LinePattern />
-
-      {/* WhatsApp Community Section */}
+      <DecorativeElements.LinePattern />h{/* WhatsApp Community Section */}
       <section id="whatsapp community" className="py-20 px-4 bg-orange-50">
         <div className="max-w-4xl mx-auto text-center">
           <div className="bg-white border border-orange-200 rounded-3xl p-8 md:p-12">
@@ -246,9 +237,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-
       <DecorativeElements.LinePattern />
-
       {/* Channel Promotion */}
       <section className="py-20 px-4 bg-orange-50">
         <div className="max-w-4xl mx-auto text-center">
@@ -295,7 +284,6 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-
       <Footer />
     </div>
   );
