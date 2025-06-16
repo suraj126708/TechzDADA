@@ -37,7 +37,6 @@ function PercentileDisplay() {
   const [availableBranches, setAvailableBranches] = useState([]);
   const [capRound, setCapRound] = useState("01");
 
-  // Simplified caste categories for user selection
   const casteCategories = [
     { value: "OPEN", label: "Open Category" },
     { value: "SC", label: "Scheduled Caste (SC)" },
@@ -249,6 +248,33 @@ function PercentileDisplay() {
     });
   };
 
+  const getExactSeatCode = (
+    selectedCaste,
+    gender,
+    isDefence,
+    isPWD,
+    collegeLevel
+  ) => {
+    if (!selectedCaste) return null;
+    let prefix = "";
+    if (isPWD) prefix = "PWD";
+    else if (isDefence) prefix = "DEF";
+    else if (gender === "female") prefix = "L";
+    else prefix = "G";
+
+    // Determine suffix based on college level
+    let suffix = "S"; // Default to State Level
+    if (collegeLevel) {
+      if (collegeLevel.toLowerCase().includes("home university")) {
+        suffix = "H";
+      } else if (collegeLevel.toLowerCase().includes("outside")) {
+        suffix = "O";
+      }
+    }
+
+    return `${prefix}${selectedCaste}${suffix}`;
+  };
+
   function applyFilters() {
     const { percentile, caste, branch, district, gender, isDefence, isPWD } =
       filters;
@@ -275,33 +301,130 @@ function PercentileDisplay() {
 
         if (!districtMatch) return null;
 
-        // Try each caste in fallback order until a seat is found
         let foundBranches = [];
         let usedCaste = null;
         let bestPercentile = 0;
 
+        // First try with selected caste and filters
         for (let fallbackCaste of fallbackCastes) {
-          // 1. Try with PWD/Defence if selected
-          let matchingCastes = getMatchingCastes(
+          const seatCode = getExactSeatCode(
             fallbackCaste,
             gender,
             isDefence,
-            isPWD
+            isPWD,
+            collegeInfo.level
           );
 
           let branches = collegeInfo.branches.filter((b) => {
-            // Branch filter
             const branchMatch =
               branch === "" ||
               b.branch_info.toLowerCase().includes(branch.toLowerCase());
 
             if (!branchMatch) return false;
 
-            // Check if user's percentile qualifies for any matching caste
             const percentileMatch = b.table_data.some((row) => {
-              return matchingCastes.some((matchingCaste) => {
-                if (matchingCaste in row) {
-                  const cutoffData = row[matchingCaste];
+              if (seatCode in row) {
+                const cutoffData = row[seatCode];
+                if (cutoffData) {
+                  const cutoffPercentile = parseFloat(
+                    cutoffData.split("\n")[1]?.replace(/[()]/g, "")
+                  );
+                  return (
+                    !isNaN(cutoffPercentile) &&
+                    parseFloat(percentile) >= cutoffPercentile
+                  );
+                }
+              }
+              return false;
+            });
+
+            return percentileMatch;
+          });
+
+          if (branches.length > 0) {
+            // Calculate best cutoff for each branch
+            branches = branches.map((b) => {
+              let branchBestPercentile = 0;
+              let branchBestCaste = fallbackCaste;
+
+              // First check OPEN category cutoffs
+              b.table_data.forEach((row) => {
+                Object.entries(row).forEach(([code, data]) => {
+                  if (code !== "null" && data) {
+                    const cutoffPercentile = parseFloat(
+                      data.split("\n")[1]?.replace(/[()]/g, "")
+                    );
+                    if (!isNaN(cutoffPercentile)) {
+                      // Prioritize OPEN category
+                      if (
+                        code.includes("OPEN") &&
+                        cutoffPercentile > branchBestPercentile
+                      ) {
+                        branchBestPercentile = cutoffPercentile;
+                        branchBestCaste = "OPEN";
+                      }
+                      // If not OPEN, only update if we haven't found an OPEN cutoff yet
+                      else if (
+                        !branchBestCaste.includes("OPEN") &&
+                        cutoffPercentile > branchBestPercentile
+                      ) {
+                        branchBestPercentile = cutoffPercentile;
+                        branchBestCaste = code
+                          .replace(/^(G|L|DEF|PWD)/, "")
+                          .replace(/[HOS]$/, "");
+                      }
+                    }
+                  }
+                });
+              });
+
+              return {
+                ...b,
+                bestCutoff: branchBestPercentile,
+                bestCaste: branchBestCaste,
+              };
+            });
+
+            foundBranches = branches;
+            usedCaste = fallbackCaste;
+            bestPercentile = Math.max(...branches.map((b) => b.bestCutoff));
+            break;
+          }
+        }
+
+        // If no seats found with selected caste, try other castes (ignoring DEF and PWD unless selected)
+        if (foundBranches.length === 0) {
+          // Get all possible caste codes for this college
+          const allCasteCodes = new Set();
+          collegeInfo.branches.forEach((b) => {
+            b.table_data.forEach((row) => {
+              Object.keys(row).forEach((key) => {
+                if (key !== "null") {
+                  // Skip DEF and PWD seats unless specifically selected
+                  if (
+                    (key.startsWith("DEF") && !isDefence) ||
+                    (key.startsWith("PWD") && !isPWD)
+                  ) {
+                    return;
+                  }
+                  allCasteCodes.add(key);
+                }
+              });
+            });
+          });
+
+          // Try each available caste code
+          for (let casteCode of allCasteCodes) {
+            let branches = collegeInfo.branches.filter((b) => {
+              const branchMatch =
+                branch === "" ||
+                b.branch_info.toLowerCase().includes(branch.toLowerCase());
+
+              if (!branchMatch) return false;
+
+              const percentileMatch = b.table_data.some((row) => {
+                if (casteCode in row) {
+                  const cutoffData = row[casteCode];
                   if (cutoffData) {
                     const cutoffPercentile = parseFloat(
                       cutoffData.split("\n")[1]?.replace(/[()]/g, "")
@@ -314,99 +437,62 @@ function PercentileDisplay() {
                 }
                 return false;
               });
-            });
-
-            return percentileMatch;
-          });
-
-          if (branches.length > 0) {
-            // Calculate best closing percentile for this college for this caste
-            branches.forEach((b) => {
-              b.table_data.forEach((row) => {
-                matchingCastes.forEach((matchingCaste) => {
-                  if (matchingCaste in row) {
-                    const cutoffData = row[matchingCaste];
-                    if (cutoffData) {
-                      const cutoffPercentile = parseFloat(
-                        cutoffData.split("\n")[1]?.replace(/[()]/g, "")
-                      );
-                      if (
-                        !isNaN(cutoffPercentile) &&
-                        cutoffPercentile > bestPercentile
-                      ) {
-                        bestPercentile = cutoffPercentile;
-                      }
-                    }
-                  }
-                });
-              });
-            });
-            foundBranches = branches;
-            usedCaste = fallbackCaste;
-            break; // Stop at first caste with available seat
-          }
-
-          // 2. If no seat found for PWD/Defence, try again as normal (without PWD/Defence)
-          if (isPWD || isDefence) {
-            matchingCastes = getMatchingCastes(
-              fallbackCaste,
-              gender,
-              false, // isDefence = false
-              false // isPWD = false
-            );
-
-            branches = collegeInfo.branches.filter((b) => {
-              const branchMatch =
-                branch === "" ||
-                b.branch_info.toLowerCase().includes(branch.toLowerCase());
-
-              if (!branchMatch) return false;
-
-              const percentileMatch = b.table_data.some((row) => {
-                return matchingCastes.some((matchingCaste) => {
-                  if (matchingCaste in row) {
-                    const cutoffData = row[matchingCaste];
-                    if (cutoffData) {
-                      const cutoffPercentile = parseFloat(
-                        cutoffData.split("\n")[1]?.replace(/[()]/g, "")
-                      );
-                      return (
-                        !isNaN(cutoffPercentile) &&
-                        parseFloat(percentile) >= cutoffPercentile
-                      );
-                    }
-                  }
-                  return false;
-                });
-              });
 
               return percentileMatch;
             });
 
             if (branches.length > 0) {
-              branches.forEach((b) => {
+              // Calculate best cutoff for each branch
+              branches = branches.map((b) => {
+                let branchBestPercentile = 0;
+                let branchBestCaste = casteCode
+                  .replace(/^(G|L|DEF|PWD)/, "")
+                  .replace(/[HOS]$/, "");
+
+                // First check OPEN category cutoffs
                 b.table_data.forEach((row) => {
-                  matchingCastes.forEach((matchingCaste) => {
-                    if (matchingCaste in row) {
-                      const cutoffData = row[matchingCaste];
-                      if (cutoffData) {
-                        const cutoffPercentile = parseFloat(
-                          cutoffData.split("\n")[1]?.replace(/[()]/g, "")
-                        );
+                  Object.entries(row).forEach(([code, data]) => {
+                    if (code !== "null" && data) {
+                      const cutoffPercentile = parseFloat(
+                        data.split("\n")[1]?.replace(/[()]/g, "")
+                      );
+                      if (!isNaN(cutoffPercentile)) {
+                        // Prioritize OPEN category
                         if (
-                          !isNaN(cutoffPercentile) &&
-                          cutoffPercentile > bestPercentile
+                          code.includes("OPEN") &&
+                          cutoffPercentile > branchBestPercentile
                         ) {
-                          bestPercentile = cutoffPercentile;
+                          branchBestPercentile = cutoffPercentile;
+                          branchBestCaste = "OPEN";
+                        }
+                        // If not OPEN, only update if we haven't found an OPEN cutoff yet
+                        else if (
+                          !branchBestCaste.includes("OPEN") &&
+                          cutoffPercentile > branchBestPercentile
+                        ) {
+                          branchBestPercentile = cutoffPercentile;
+                          branchBestCaste = code
+                            .replace(/^(G|L|DEF|PWD)/, "")
+                            .replace(/[HOS]$/, "");
                         }
                       }
                     }
                   });
                 });
+
+                return {
+                  ...b,
+                  bestCutoff: branchBestPercentile,
+                  bestCaste: branchBestCaste,
+                };
               });
+
               foundBranches = branches;
-              usedCaste = fallbackCaste;
-              break; // Stop at first caste with available seat
+              usedCaste = casteCode
+                .replace(/^(G|L|DEF|PWD)/, "")
+                .replace(/[HOS]$/, "");
+              bestPercentile = Math.max(...branches.map((b) => b.bestCutoff));
+              break;
             }
           }
         }
@@ -613,7 +699,7 @@ function PercentileDisplay() {
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700 flex items-center space-x-2">
                     <MapPin className="h-4 w-4 text-[#f68014]" />
-                    <span>Select District</span>
+                    <span>Select Location</span>
                   </label>
                   <div className="relative">
                     <select
@@ -622,7 +708,7 @@ function PercentileDisplay() {
                       onChange={handleFilterChange}
                       className="w-full px-4 py-3 border border-orange-200 rounded-xl focus:ring-2 focus:ring-[#f68014] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white appearance-none cursor-pointer"
                     >
-                      <option value="">-- Select District --</option>
+                      <option value="">-- Select Location --</option>
                       {availableDistricts.map((district) => (
                         <option key={district} value={district}>
                           {district}
