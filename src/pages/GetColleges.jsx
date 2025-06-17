@@ -412,19 +412,18 @@ function PercentileDisplay() {
       <UserNavbar />
 
       {/* Header */}
-      <div className=" backdrop-blur-md border-b border-orange-100">
-        <div className="max-w-4xl mx-auto px-4 py-10">
+      <div className="backdrop-blur-md border-b border-orange-100">
+        <div className="max-w-4xl mx-auto px-4 py-8 sm:py-10">
           <div className="text-center">
-            <div className="inline-flex items-center justify-center space-x-3 mb-6">
-              <div className="bg-[#f68014] p-4 rounded-2xl">
-                <GraduationCap className="h-10 w-10 text-white" />
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-4">
+              <div className="bg-[#f68014] p-3 sm:p-4 rounded-2xl flex-shrink-0">
+                <GraduationCap className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
               </div>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#f68014] mb-4">
+              <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-bold text-[#f68014] mb-2 sm:mb-0 text-center">
                 MHT CET College Predictor 2025
               </h1>
             </div>
-
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-sm xs:text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-2">
               Find your perfect engineering college based on your percentile,
               caste category, and preferences
             </p>
