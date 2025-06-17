@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import UserNavbar from "../Components/Layouts/UserNavbar";
 import CollegeSection from "../Components/Sections/CollegeSection";
+import YoutubePart from "../Components/Sections/YoutubePart";
 import logo from "/assets/Logo.svg";
 import Footer from "../Components/Layouts/Footer";
 import DecorativeElements from "../Components/DecorativeElements";
@@ -146,6 +147,28 @@ const HomePage = () => {
         </div>
       </section>
       <DecorativeElements.LinePattern />
+      {/* What is College Pe Charcha Section */}
+      <section className="py-20 px-4 bg-orange-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col lg:flex-row items-center gap-12">
+            <div className="lg:w-1/2 text-center lg:text-left">
+              <h2 className="text-4xl md:text-4xl font-bold mb-6 text-gray-800">
+                What is{" "}
+                <span className="text-orange-500">College Pe चर्चा?</span>
+              </h2>
+              <p className="text-xl text-gray-600">
+                Watch this video to understand how we're revolutionizing the way
+                students make college decisions
+              </p>
+            </div>
+
+            <div className="lg:w-1/2 w-full">
+              <YoutubePart videoId="y459gWKoaEw" />
+            </div>
+          </div>
+        </div>
+      </section>
+      <DecorativeElements.LinePattern />
       {/* How It Works */}
       <section className="py-20 px-4 bg-orange-50">
         <div className="max-w-6xl mx-auto">
@@ -198,7 +221,8 @@ const HomePage = () => {
       </section>
       <DecorativeElements.LinePattern />
       <CollegeSection />
-      <DecorativeElements.LinePattern />h{/* WhatsApp Community Section */}
+      <DecorativeElements.LinePattern />
+      {/* WhatsApp Community Section */}
       <section id="whatsapp community" className="py-20 px-4 bg-orange-50">
         <div className="max-w-4xl mx-auto text-center">
           <div className="bg-white border border-orange-200 rounded-3xl p-8 md:p-12">
