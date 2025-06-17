@@ -403,23 +403,21 @@ function PercentileDisplay() {
     setFilteredColleges(results.slice(0, 20)); // Top 20 results
   }
 
-  useEffect(() => {
-    console.log("filteredColleges", filteredColleges);
-  }, [filteredColleges]);
-
   return (
     <div className="min-h-screen bg-orange-50">
       <UserNavbar />
 
-      {/* Header */}
       <div className="backdrop-blur-md border-b border-orange-100">
         <div className="max-w-4xl mx-auto px-4 py-8 sm:py-10">
           <div className="text-center">
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-4">
-              <div className="bg-[#f68014] p-3 sm:p-4 rounded-2xl flex-shrink-0">
+            <div className="flex sm:flex-row items-center justify-center gap-2 sm:gap-6 mb-4">
+              <div className="hidden sm:block bg-[#f68014] p-3 sm:p-4 rounded-2xl flex-shrink-0">
                 <GraduationCap className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
               </div>
-              <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-bold text-[#f68014] mb-2 sm:mb-0 text-center">
+              <h1
+                style={{ fontSize: "1.75rem" }}
+                className=" xs:text-2xl sm:text-3xl md:text-4xl font-bold text-[#f68014] sm:mb-0 text-center"
+              >
                 MHT CET College Predictor 2025
               </h1>
             </div>
