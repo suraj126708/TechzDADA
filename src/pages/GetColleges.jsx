@@ -22,14 +22,14 @@ import UserNavbar from "../Components/Layouts/UserNavbar";
 import Footer from "../Components/Layouts/Footer";
 
 const casteFallbackOrder = {
-  NT3: ["NT3", "NT2", "NT1", "VJ", "OBC", "OPEN", "EWS"],
-  NT2: ["NT2", "NT1", "VJ", "OBC", "OPEN", "EWS"],
-  NT1: ["NT1", "VJ", "OBC", "OPEN", "EWS"],
-  VJ: ["VJ", "OBC", "OPEN", "EWS"],
-  OBC: ["OBC", "OPEN", "EWS"],
-  SC: ["SC", "OPEN", "EWS"],
-  ST: ["ST", "OPEN", "EWS"],
-  OPEN: ["OPEN", "EWS"],
+  NT3: ["NT3", "NT2", "NT1", "OPEN"],
+  NT2: ["NT2", "NT1", "OPEN"],
+  NT1: ["NT1", "OPEN"],
+  VJ: ["VJ", "OPEN"],
+  OBC: ["OBC", "OPEN"],
+  SC: ["SC", "OPEN"],
+  ST: ["ST", "OPEN"],
+  OPEN: ["OPEN"],
   EWS: ["EWS", "OPEN"],
 };
 
@@ -347,35 +347,23 @@ function PercentileDisplay() {
               let branchBestPercentile = 0;
               let branchBestCaste = fallbackCaste;
 
-              // First check OPEN category cutoffs
+              // Only check cutoffs for the current fallback caste
               b.table_data.forEach((row) => {
-                Object.entries(row).forEach(([code, data]) => {
-                  if (code !== "null" && data) {
+                if (seatCode in row) {
+                  const cutoffData = row[seatCode];
+                  if (cutoffData) {
                     const cutoffPercentile = parseFloat(
-                      data.split("\n")[1]?.replace(/[()]/g, "")
+                      cutoffData.split("\n")[1]?.replace(/[()]/g, "")
                     );
-                    if (!isNaN(cutoffPercentile)) {
-                      // Prioritize OPEN category
-                      if (
-                        code.includes("OPEN") &&
-                        cutoffPercentile > branchBestPercentile
-                      ) {
-                        branchBestPercentile = cutoffPercentile;
-                        branchBestCaste = "OPEN";
-                      }
-                      // If not OPEN, only update if we haven't found an OPEN cutoff yet
-                      else if (
-                        !branchBestCaste.includes("OPEN") &&
-                        cutoffPercentile > branchBestPercentile
-                      ) {
-                        branchBestPercentile = cutoffPercentile;
-                        branchBestCaste = code
-                          .replace(/^(G|L|DEF|PWD)/, "")
-                          .replace(/[HOS]$/, "");
-                      }
+                    if (
+                      !isNaN(cutoffPercentile) &&
+                      cutoffPercentile > branchBestPercentile
+                    ) {
+                      branchBestPercentile = cutoffPercentile;
+                      branchBestCaste = fallbackCaste;
                     }
                   }
-                });
+                }
               });
 
               return {
@@ -389,111 +377,6 @@ function PercentileDisplay() {
             usedCaste = fallbackCaste;
             bestPercentile = Math.max(...branches.map((b) => b.bestCutoff));
             break;
-          }
-        }
-
-        // If no seats found with selected caste, try other castes (ignoring DEF and PWD unless selected)
-        if (foundBranches.length === 0) {
-          // Get all possible caste codes for this college
-          const allCasteCodes = new Set();
-          collegeInfo.branches.forEach((b) => {
-            b.table_data.forEach((row) => {
-              Object.keys(row).forEach((key) => {
-                if (key !== "null") {
-                  // Skip DEF and PWD seats unless specifically selected
-                  if (
-                    (key.startsWith("DEF") && !isDefence) ||
-                    (key.startsWith("PWD") && !isPWD)
-                  ) {
-                    return;
-                  }
-                  allCasteCodes.add(key);
-                }
-              });
-            });
-          });
-
-          // Try each available caste code
-          for (let casteCode of allCasteCodes) {
-            let branches = collegeInfo.branches.filter((b) => {
-              const branchMatch =
-                branch === "" ||
-                b.branch_info.toLowerCase().includes(branch.toLowerCase());
-
-              if (!branchMatch) return false;
-
-              const percentileMatch = b.table_data.some((row) => {
-                if (casteCode in row) {
-                  const cutoffData = row[casteCode];
-                  if (cutoffData) {
-                    const cutoffPercentile = parseFloat(
-                      cutoffData.split("\n")[1]?.replace(/[()]/g, "")
-                    );
-                    return (
-                      !isNaN(cutoffPercentile) &&
-                      parseFloat(percentile) >= cutoffPercentile
-                    );
-                  }
-                }
-                return false;
-              });
-
-              return percentileMatch;
-            });
-
-            if (branches.length > 0) {
-              // Calculate best cutoff for each branch
-              branches = branches.map((b) => {
-                let branchBestPercentile = 0;
-                let branchBestCaste = casteCode
-                  .replace(/^(G|L|DEF|PWD)/, "")
-                  .replace(/[HOS]$/, "");
-
-                // First check OPEN category cutoffs
-                b.table_data.forEach((row) => {
-                  Object.entries(row).forEach(([code, data]) => {
-                    if (code !== "null" && data) {
-                      const cutoffPercentile = parseFloat(
-                        data.split("\n")[1]?.replace(/[()]/g, "")
-                      );
-                      if (!isNaN(cutoffPercentile)) {
-                        // Prioritize OPEN category
-                        if (
-                          code.includes("OPEN") &&
-                          cutoffPercentile > branchBestPercentile
-                        ) {
-                          branchBestPercentile = cutoffPercentile;
-                          branchBestCaste = "OPEN";
-                        }
-                        // If not OPEN, only update if we haven't found an OPEN cutoff yet
-                        else if (
-                          !branchBestCaste.includes("OPEN") &&
-                          cutoffPercentile > branchBestPercentile
-                        ) {
-                          branchBestPercentile = cutoffPercentile;
-                          branchBestCaste = code
-                            .replace(/^(G|L|DEF|PWD)/, "")
-                            .replace(/[HOS]$/, "");
-                        }
-                      }
-                    }
-                  });
-                });
-
-                return {
-                  ...b,
-                  bestCutoff: branchBestPercentile,
-                  bestCaste: branchBestCaste,
-                };
-              });
-
-              foundBranches = branches;
-              usedCaste = casteCode
-                .replace(/^(G|L|DEF|PWD)/, "")
-                .replace(/[HOS]$/, "");
-              bestPercentile = Math.max(...branches.map((b) => b.bestCutoff));
-              break;
-            }
           }
         }
 
