@@ -419,12 +419,12 @@ function PercentileDisplay() {
               <div className="bg-[#f68014] p-4 rounded-2xl">
                 <GraduationCap className="h-10 w-10 text-white" />
               </div>
-              <h1 className="text-4xl font-bold text-[#f68014] mb-4">
-                College Finder
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#f68014] mb-4">
+                MHT CET College Predictor 2025
               </h1>
             </div>
 
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
               Find your perfect engineering college based on your percentile,
               caste category, and preferences
             </p>
