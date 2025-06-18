@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
-import CAP01 from "../Data/CAP_01.json";
-import CAP02 from "../Data/CAP_02.json";
-import CAP03 from "../Data/CAP_03.json";
+import CAP01 from "../Data/CAP_01_2024.json";
+import CAP02 from "../Data/CAP_02_2024.json";
+import CAP03 from "../Data/CAP_03_2024.json";
 
 import {
   Search,
@@ -52,12 +52,18 @@ function PercentileDisplay() {
   const [filters, setFilters] = useState({
     percentile: "",
     caste: "",
-    branch: "",
-    district: "",
+    branch: [],
+    district: [],
     gender: "",
     isDefence: false,
     isPWD: false,
   });
+
+  const [percentileError, setPercentileError] = useState("");
+  const [suggestedPercentile, setSuggestedPercentile] = useState(null);
+
+  const [selectedBranch, setSelectedBranch] = useState("");
+  const [selectedDistrict, setSelectedDistrict] = useState("");
 
   const [filteredColleges, setFilteredColleges] = useState([]);
   const [availableDistricts, setAvailableDistricts] = useState([]);
@@ -242,10 +248,71 @@ function PercentileDisplay() {
 
   const handleFilterChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFilters({
-      ...filters,
-      [name]: type === "checkbox" ? checked : value,
-    });
+
+    if (name === "percentile") {
+      const percentileValue = parseFloat(value);
+
+      // Clear previous error and suggestion
+      setPercentileError("");
+      setSuggestedPercentile(null);
+
+      if (percentileValue > 100) {
+        setPercentileError("Percentile cannot be greater than 100");
+      } else if (percentileValue < 0) {
+        setPercentileError("Percentile cannot be negative");
+      } else if (percentileValue < 50) {
+        setSuggestedPercentile(percentileValue + 5);
+      } else if (percentileValue < 80) {
+        setSuggestedPercentile(percentileValue + 3);
+      }
+    }
+
+    if (name === "branch") {
+      setSelectedBranch(value);
+    } else if (name === "district") {
+      setSelectedDistrict(value);
+    } else {
+      setFilters((prev) => ({
+        ...prev,
+        [name]: type === "checkbox" ? checked : value,
+      }));
+    }
+  };
+
+  const addBranch = () => {
+    if (selectedBranch && !filters.branch.includes(selectedBranch)) {
+      setFilters((prev) => ({
+        ...prev,
+        branch: [...prev.branch, selectedBranch],
+      }));
+      setSelectedBranch("");
+    }
+  };
+
+  const removeBranch = (branchToRemove) => {
+    setFilters((prev) => ({
+      ...prev,
+      branch: prev.branch.filter((branch) => branch !== branchToRemove),
+    }));
+  };
+
+  const addDistrict = () => {
+    if (selectedDistrict && !filters.district.includes(selectedDistrict)) {
+      setFilters((prev) => ({
+        ...prev,
+        district: [...prev.district, selectedDistrict],
+      }));
+      setSelectedDistrict("");
+    }
+  };
+
+  const removeDistrict = (districtToRemove) => {
+    setFilters((prev) => ({
+      ...prev,
+      district: prev.district.filter(
+        (district) => district !== districtToRemove
+      ),
+    }));
   };
 
   const getExactSeatCode = (
@@ -284,6 +351,15 @@ function PercentileDisplay() {
       return;
     }
 
+    const percentileValue = parseFloat(percentile);
+    if (percentileValue > 100) {
+      setPercentileError("Percentile cannot be greater than 100");
+      return;
+    }
+
+    // Use suggested percentile if available
+    const percentileToUse = suggestedPercentile || percentileValue;
+
     let capData;
     if (capRound === "01") capData = CAP01;
     else if (capRound === "02") capData = CAP02;
@@ -296,8 +372,12 @@ function PercentileDisplay() {
       .map(([collegeName, collegeInfo]) => {
         // Filter by district first
         const districtMatch =
-          district === "" ||
-          collegeInfo.district?.toLowerCase() === district.toLowerCase();
+          district.length === 0 || // If no districts selected, show all
+          district.some(
+            (selectedDistrict) =>
+              collegeInfo.district?.toLowerCase() ===
+              selectedDistrict.toLowerCase()
+          );
 
         if (!districtMatch) return null;
 
@@ -316,9 +396,14 @@ function PercentileDisplay() {
           );
 
           let branches = collegeInfo.branches.filter((b) => {
+            // Check if branch matches any of the selected branches
             const branchMatch =
-              branch === "" ||
-              b.branch_info.toLowerCase().includes(branch.toLowerCase());
+              branch.length === 0 || // If no branches selected, show all
+              branch.some((selectedBranch) =>
+                b.branch_info
+                  .toLowerCase()
+                  .includes(selectedBranch.toLowerCase())
+              );
 
             if (!branchMatch) return false;
 
@@ -331,7 +416,7 @@ function PercentileDisplay() {
                   );
                   return (
                     !isNaN(cutoffPercentile) &&
-                    parseFloat(percentile) >= cutoffPercentile
+                    percentileToUse >= cutoffPercentile
                   );
                 }
               }
@@ -372,6 +457,17 @@ function PercentileDisplay() {
                 bestCaste: branchBestCaste,
               };
             });
+
+            // Filter branches to only show those that match user's selected branches
+            if (branch.length > 0) {
+              branches = branches.filter((b) =>
+                branch.some((selectedBranch) =>
+                  b.branch_info
+                    .toLowerCase()
+                    .includes(selectedBranch.toLowerCase())
+                )
+              );
+            }
 
             foundBranches = branches;
             usedCaste = fallbackCaste;
@@ -454,9 +550,20 @@ function PercentileDisplay() {
                       name="percentile"
                       value={filters.percentile}
                       onChange={handleFilterChange}
-                      className="w-full px-4 py-3 border border-orange-200 rounded-xl focus:ring-2 focus:ring-[#f68014] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white"
+                      className={`w-full px-4 py-3 border ${
+                        percentileError ? "border-red-300" : "border-orange-200"
+                      } rounded-xl focus:ring-2 focus:ring-[#f68014] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white`}
                       placeholder="Enter percentile (e.g., 85.5)"
+                      min="0"
+                      max="100"
+                      step="0.01"
                     />
+                    {percentileError && (
+                      <div className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                        <X className="h-4 w-4" />
+                        <span>{percentileError}</span>
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -579,23 +686,58 @@ function PercentileDisplay() {
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700 flex items-center space-x-2">
                     <MapPin className="h-4 w-4 text-[#f68014]" />
-                    <span>Select Location</span>
+                    <span>Select Locations</span>
                   </label>
-                  <div className="relative">
-                    <select
-                      name="district"
-                      value={filters.district}
-                      onChange={handleFilterChange}
-                      className="w-full px-4 py-3 border border-orange-200 rounded-xl focus:ring-2 focus:ring-[#f68014] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white appearance-none cursor-pointer"
-                    >
-                      <option value="">-- Select Location --</option>
-                      {availableDistricts.map((district) => (
-                        <option key={district} value={district}>
-                          {district}
-                        </option>
-                      ))}
-                    </select>
-                    <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500 pointer-events-none" />
+                  <div className="space-y-3">
+                    <div className="flex gap-2">
+                      <div className="relative flex-1">
+                        <select
+                          name="district"
+                          value={selectedDistrict}
+                          onChange={handleFilterChange}
+                          className="w-full px-4 py-3 border border-orange-200 rounded-xl focus:ring-2 focus:ring-[#f68014] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white appearance-none cursor-pointer"
+                        >
+                          <option value="">Select Location</option>
+                          {availableDistricts
+                            .filter(
+                              (district) => !filters.district.includes(district)
+                            )
+                            .map((district) => (
+                              <option key={district} value={district}>
+                                {district}
+                              </option>
+                            ))}
+                        </select>
+                        <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500 pointer-events-none" />
+                      </div>
+                      <button
+                        onClick={addDistrict}
+                        disabled={!selectedDistrict}
+                        className="px-4 py-2 bg-[#f68014] text-white rounded-xl hover:bg-orange-600 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        Add
+                      </button>
+                    </div>
+
+                    {/* Selected Districts */}
+                    {filters.district.length > 0 && (
+                      <div className="flex flex-wrap gap-2">
+                        {filters.district.map((district) => (
+                          <div
+                            key={district}
+                            className="flex items-center gap-1 bg-orange-100 text-[#f68014] px-3 py-1 rounded-xl text-sm"
+                          >
+                            <span>{district}</span>
+                            <button
+                              onClick={() => removeDistrict(district)}
+                              className="hover:text-orange-700"
+                            >
+                              <X className="h-4 w-4" />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -603,23 +745,58 @@ function PercentileDisplay() {
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700 flex items-center space-x-2">
                     <BookOpen className="h-4 w-4 text-[#f68014]" />
-                    <span>Select Branch</span>
+                    <span>Select Branches</span>
                   </label>
-                  <div className="relative">
-                    <select
-                      name="branch"
-                      value={filters.branch}
-                      onChange={handleFilterChange}
-                      className="w-full px-4 py-3 border border-orange-200 rounded-xl focus:ring-2 focus:ring-[#f68014] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white appearance-none cursor-pointer"
-                    >
-                      <option value="">-- Select Branch --</option>
-                      {availableBranches.map((branch) => (
-                        <option key={branch} value={branch}>
-                          {branch}
-                        </option>
-                      ))}
-                    </select>
-                    <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500 pointer-events-none" />
+                  <div className="space-y-3">
+                    <div className="flex gap-2">
+                      <div className="relative flex-1">
+                        <select
+                          name="branch"
+                          value={selectedBranch}
+                          onChange={handleFilterChange}
+                          className="w-full px-4 py-3 border border-orange-200 rounded-xl focus:ring-2 focus:ring-[#f68014] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white appearance-none cursor-pointer"
+                        >
+                          <option value="">Select Branch</option>
+                          {availableBranches
+                            .filter(
+                              (branch) => !filters.branch.includes(branch)
+                            )
+                            .map((branch) => (
+                              <option key={branch} value={branch}>
+                                {branch}
+                              </option>
+                            ))}
+                        </select>
+                        <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500 pointer-events-none" />
+                      </div>
+                      <button
+                        onClick={addBranch}
+                        disabled={!selectedBranch}
+                        className="px-4 py-2 bg-[#f68014] text-white rounded-xl hover:bg-orange-600 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        Add
+                      </button>
+                    </div>
+
+                    {/* Selected Branches */}
+                    {filters.branch.length > 0 && (
+                      <div className="flex flex-wrap gap-2">
+                        {filters.branch.map((branch) => (
+                          <div
+                            key={branch}
+                            className="flex items-center gap-1 bg-orange-100 text-[#f68014] px-3 py-1 rounded-xl text-sm"
+                          >
+                            <span>{branch}</span>
+                            <button
+                              onClick={() => removeBranch(branch)}
+                              className="hover:text-orange-700"
+                            >
+                              <X className="h-4 w-4" />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
 
