@@ -807,7 +807,7 @@ function PercentileDisplay() {
                     <div className="p-4 sm:p-6">
                       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 sm:gap-6 mb-4">
                         <div className="flex-1">
-                          <h2 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 leading-tight">
+                          <h2 className="text-lg sm:text-xl font-bold text-gray-800 my-2 leading-tight">
                             {college.collegeName}
                           </h2>
                           <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-sm mb-3">
@@ -827,7 +827,7 @@ function PercentileDisplay() {
                           )}
                         </div>
 
-                        <div className="text-right">
+                        <div className="text-left">
                           <div className="bg-[#f68014] text-white px-3 sm:px-4 py-2 sm:py-3 rounded-xl inline-block">
                             <div className="text-xs font-medium opacity-90">
                               Best Closing
