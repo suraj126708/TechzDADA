@@ -504,15 +504,15 @@ function PercentileDisplay() {
       <UserNavbar />
 
       <div className="backdrop-blur-md border-b border-orange-100">
-        <div className="max-w-4xl mx-auto px-4 py-8 sm:py-10">
+        <div className="max-w-4xl mx-auto px-4 py-6 sm:py-8">
           <div className="text-center">
-            <div className="flex sm:flex-row items-center justify-center gap-2 sm:gap-6 mb-4">
+            <div className="flex sm:flex-row items-center justify-center gap-2 sm:gap-6 mb-3 sm:mb-4">
               <div className="hidden sm:block bg-[#f68014] p-3 sm:p-4 rounded-2xl flex-shrink-0">
                 <GraduationCap className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
               </div>
               <h1
-                style={{ fontSize: "1.75rem" }}
-                className=" xs:text-2xl sm:text-3xl md:text-4xl font-bold text-[#f68014] sm:mb-0 text-center"
+                style={{ fontSize: "1.5rem" }}
+                className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-bold text-[#f68014] sm:mb-0 text-center"
               >
                 MHT CET College Predictor 2025
               </h1>
@@ -525,19 +525,19 @@ function PercentileDisplay() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="grid lg:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto px-4 py-6 sm:py-8">
+        <div className="grid lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {/* Filters Panel */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-2xl shadow-xl border border-orange-100 sticky top-24">
-              <div className="p-6 border-b border-orange-100">
-                <h2 className="text-xl font-semibold text-gray-800 flex items-center space-x-2">
+              <div className="p-4 sm:p-6 border-b border-orange-100">
+                <h2 className="text-lg sm:text-xl font-semibold text-gray-800 flex items-center space-x-2">
                   <Filter className="h-5 w-5 text-[#f68014]" />
                   <span>Filter Criteria</span>
                 </h2>
               </div>
 
-              <div className="p-6 space-y-6">
+              <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
                 {/* Percentile Input */}
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700 flex items-center space-x-2">
@@ -550,17 +550,17 @@ function PercentileDisplay() {
                       name="percentile"
                       value={filters.percentile}
                       onChange={handleFilterChange}
-                      className={`w-full px-4 py-3 border ${
+                      className={`w-full px-3 sm:px-4 py-2 sm:py-3 border ${
                         percentileError ? "border-red-300" : "border-orange-200"
-                      } rounded-xl focus:ring-2 focus:ring-[#f68014] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white`}
+                      } rounded-xl focus:ring-2 focus:ring-[#f68014] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white text-sm sm:text-base`}
                       placeholder="Enter percentile (e.g., 85.5)"
                       min="0"
                       max="100"
                       step="0.01"
                     />
                     {percentileError && (
-                      <div className="mt-1 text-sm text-red-600 flex items-center gap-1">
-                        <X className="h-4 w-4" />
+                      <div className="mt-1 text-xs sm:text-sm text-red-600 flex items-center gap-1">
+                        <X className="h-3 w-3 sm:h-4 sm:w-4" />
                         <span>{percentileError}</span>
                       </div>
                     )}
@@ -568,50 +568,28 @@ function PercentileDisplay() {
                 </div>
 
                 {/* CAP Round */}
-                <div className="space-y-3">
+                <div className="space-y-2 sm:space-y-3">
                   <label className="block text-sm font-medium text-gray-700">
                     CAP Round
                   </label>
                   <div className="grid grid-cols-3 gap-2">
-                    <label className="relative">
-                      <input
-                        type="radio"
-                        name="capRound"
-                        value="01"
-                        checked={capRound === "01"}
-                        onChange={() => setCapRound("01")}
-                        className="peer sr-only"
-                      />
-                      <div className="px-3 py-2 bg-gray-100 border border-orange-200 rounded-lg text-center cursor-pointer transition-all duration-200 peer-checked:bg-[#f68014] peer-checked:text-white peer-checked:border-[#f68014] hover:border-orange-300">
-                        <span className="text-sm font-medium">CAP_01</span>
-                      </div>
-                    </label>
-                    <label className="relative">
-                      <input
-                        type="radio"
-                        name="capRound"
-                        value="02"
-                        checked={capRound === "02"}
-                        onChange={() => setCapRound("02")}
-                        className="peer sr-only"
-                      />
-                      <div className="px-3 py-2 bg-gray-100 border border-orange-200 rounded-lg text-center cursor-pointer transition-all duration-200 peer-checked:bg-[#f68014] peer-checked:text-white peer-checked:border-[#f68014] hover:border-orange-300">
-                        <span className="text-sm font-medium">CAP_02</span>
-                      </div>
-                    </label>
-                    <label className="relative">
-                      <input
-                        type="radio"
-                        name="capRound"
-                        value="03"
-                        checked={capRound === "03"}
-                        onChange={() => setCapRound("03")}
-                        className="peer sr-only"
-                      />
-                      <div className="px-3 py-2 bg-gray-100 border border-orange-200 rounded-lg text-center cursor-pointer transition-all duration-200 peer-checked:bg-[#f68014] peer-checked:text-white peer-checked:border-[#f68014] hover:border-orange-300">
-                        <span className="text-sm font-medium">CAP_03</span>
-                      </div>
-                    </label>
+                    {["01", "02", "03"].map((round) => (
+                      <label key={round} className="relative">
+                        <input
+                          type="radio"
+                          name="capRound"
+                          value={round}
+                          checked={capRound === round}
+                          onChange={() => setCapRound(round)}
+                          className="peer sr-only"
+                        />
+                        <div className="px-2 sm:px-3 py-1.5 sm:py-2 bg-gray-100 border border-orange-200 rounded-lg text-center cursor-pointer transition-all duration-200 peer-checked:bg-[#f68014] peer-checked:text-white peer-checked:border-[#f68014] hover:border-orange-300">
+                          <span className="text-xs sm:text-sm font-medium">
+                            CAP_{round}
+                          </span>
+                        </div>
+                      </label>
+                    ))}
                   </div>
                 </div>
 
@@ -626,7 +604,7 @@ function PercentileDisplay() {
                       name="caste"
                       value={filters.caste}
                       onChange={handleFilterChange}
-                      className="w-full px-4 py-3 border border-orange-200 rounded-xl focus:ring-2 focus:ring-[#f68014] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white appearance-none cursor-pointer"
+                      className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-orange-200 rounded-xl focus:ring-2 focus:ring-[#f68014] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white appearance-none cursor-pointer text-sm sm:text-base"
                     >
                       <option value="">-- Select Caste Category --</option>
                       {casteCategories.map((category) => (
@@ -640,11 +618,11 @@ function PercentileDisplay() {
                 </div>
 
                 {/* Special Categories */}
-                <div className="space-y-3">
+                <div className="space-y-2 sm:space-y-3">
                   <label className="block text-sm font-medium text-gray-700">
                     Special Categories
                   </label>
-                  <div className="space-y-3">
+                  <div className="space-y-2 sm:space-y-3">
                     <label className="flex items-center space-x-3 cursor-pointer group">
                       <div className="relative">
                         <input
@@ -654,11 +632,11 @@ function PercentileDisplay() {
                           onChange={handleFilterChange}
                           className="sr-only peer"
                         />
-                        <div className="w-5 h-5 border-2 border-orange-300 rounded peer-checked:bg-[#f68014] peer-checked:border-[#f68014] transition-all duration-200 group-hover:border-orange-400 flex items-center justify-center">
-                          <CheckCircle className="h-3 w-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity duration-200" />
+                        <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-orange-300 rounded peer-checked:bg-[#f68014] peer-checked:border-[#f68014] transition-all duration-200 group-hover:border-orange-400 flex items-center justify-center">
+                          <CheckCircle className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity duration-200" />
                         </div>
                       </div>
-                      <span className="text-sm text-gray-700 group-hover:text-gray-900">
+                      <span className="text-xs sm:text-sm text-gray-700 group-hover:text-gray-900">
                         Defence Category
                       </span>
                     </label>
@@ -671,90 +649,31 @@ function PercentileDisplay() {
                           onChange={handleFilterChange}
                           className="sr-only peer"
                         />
-                        <div className="w-5 h-5 border-2 border-orange-300 rounded peer-checked:bg-[#f68014] peer-checked:border-[#f68014] transition-all duration-200 group-hover:border-orange-400 flex items-center justify-center">
-                          <CheckCircle className="h-3 w-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity duration-200" />
+                        <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-orange-300 rounded peer-checked:bg-[#f68014] peer-checked:border-[#f68014] transition-all duration-200 group-hover:border-orange-400 flex items-center justify-center">
+                          <CheckCircle className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity duration-200" />
                         </div>
                       </div>
-                      <span className="text-sm text-gray-700 group-hover:text-gray-900">
+                      <span className="text-xs sm:text-sm text-gray-700 group-hover:text-gray-900">
                         Person with Disability (PWD)
                       </span>
                     </label>
                   </div>
                 </div>
 
-                {/* District */}
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700 flex items-center space-x-2">
-                    <MapPin className="h-4 w-4 text-[#f68014]" />
-                    <span>Select Locations</span>
-                  </label>
-                  <div className="space-y-3">
-                    <div className="flex gap-2">
-                      <div className="relative flex-1">
-                        <select
-                          name="district"
-                          value={selectedDistrict}
-                          onChange={handleFilterChange}
-                          className="w-full px-4 py-3 border border-orange-200 rounded-xl focus:ring-2 focus:ring-[#f68014] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white appearance-none cursor-pointer"
-                        >
-                          <option value="">Select Location</option>
-                          {availableDistricts
-                            .filter(
-                              (district) => !filters.district.includes(district)
-                            )
-                            .map((district) => (
-                              <option key={district} value={district}>
-                                {district}
-                              </option>
-                            ))}
-                        </select>
-                        <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500 pointer-events-none" />
-                      </div>
-                      <button
-                        onClick={addDistrict}
-                        disabled={!selectedDistrict}
-                        className="px-4 py-2 bg-[#f68014] text-white rounded-xl hover:bg-orange-600 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-                      >
-                        Add
-                      </button>
-                    </div>
-
-                    {/* Selected Districts */}
-                    {filters.district.length > 0 && (
-                      <div className="flex flex-wrap gap-2">
-                        {filters.district.map((district) => (
-                          <div
-                            key={district}
-                            className="flex items-center gap-1 bg-orange-100 text-[#f68014] px-3 py-1 rounded-xl text-sm"
-                          >
-                            <span>{district}</span>
-                            <button
-                              onClick={() => removeDistrict(district)}
-                              className="hover:text-orange-700"
-                            >
-                              <X className="h-4 w-4" />
-                            </button>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* Branch */}
+                {/* Branch Selection */}
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700 flex items-center space-x-2">
                     <BookOpen className="h-4 w-4 text-[#f68014]" />
                     <span>Select Branches</span>
                   </label>
-                  <div className="space-y-3">
+                  <div className="space-y-2 sm:space-y-3">
                     <div className="flex gap-2">
                       <div className="relative flex-1">
                         <select
                           name="branch"
                           value={selectedBranch}
                           onChange={handleFilterChange}
-                          className="w-full px-4 py-3 border border-orange-200 rounded-xl focus:ring-2 focus:ring-[#f68014] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white appearance-none cursor-pointer"
+                          className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-orange-200 rounded-xl focus:ring-2 focus:ring-[#f68014] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white appearance-none cursor-pointer text-sm sm:text-base"
                         >
                           <option value="">Select Branch</option>
                           {availableBranches
@@ -772,7 +691,7 @@ function PercentileDisplay() {
                       <button
                         onClick={addBranch}
                         disabled={!selectedBranch}
-                        className="px-4 py-2 bg-[#f68014] text-white rounded-xl hover:bg-orange-600 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="px-3 sm:px-4 py-2 sm:py-3 bg-[#f68014] text-white rounded-xl hover:bg-orange-600 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base whitespace-nowrap"
                       >
                         Add
                       </button>
@@ -780,18 +699,81 @@ function PercentileDisplay() {
 
                     {/* Selected Branches */}
                     {filters.branch.length > 0 && (
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-1.5 sm:gap-2">
                         {filters.branch.map((branch) => (
                           <div
                             key={branch}
-                            className="flex items-center gap-1 bg-orange-100 text-[#f68014] px-3 py-1 rounded-xl text-sm"
+                            className="flex items-center gap-1 bg-orange-100 text-[#f68014] px-2 sm:px-3 py-1 rounded-xl text-xs sm:text-sm"
                           >
-                            <span>{branch}</span>
+                            <span className="truncate max-w-[120px] sm:max-w-[200px]">
+                              {branch}
+                            </span>
                             <button
                               onClick={() => removeBranch(branch)}
-                              className="hover:text-orange-700"
+                              className="hover:text-orange-700 flex-shrink-0"
                             >
-                              <X className="h-4 w-4" />
+                              <X className="h-3 w-3 sm:h-4 sm:w-4" />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Location Selection */}
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-gray-700 flex items-center space-x-2">
+                    <MapPin className="h-4 w-4 text-[#f68014]" />
+                    <span>Select Locations</span>
+                  </label>
+                  <div className="space-y-2 sm:space-y-3">
+                    <div className="flex gap-2">
+                      <div className="relative flex-1">
+                        <select
+                          name="district"
+                          value={selectedDistrict}
+                          onChange={handleFilterChange}
+                          className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-orange-200 rounded-xl focus:ring-2 focus:ring-[#f68014] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white appearance-none cursor-pointer text-sm sm:text-base"
+                        >
+                          <option value="">Select Location</option>
+                          {availableDistricts
+                            .filter(
+                              (district) => !filters.district.includes(district)
+                            )
+                            .map((district) => (
+                              <option key={district} value={district}>
+                                {district}
+                              </option>
+                            ))}
+                        </select>
+                        <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500 pointer-events-none" />
+                      </div>
+                      <button
+                        onClick={addDistrict}
+                        disabled={!selectedDistrict}
+                        className="px-3 sm:px-4 py-2 sm:py-3 bg-[#f68014] text-white rounded-xl hover:bg-orange-600 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base whitespace-nowrap"
+                      >
+                        Add
+                      </button>
+                    </div>
+
+                    {/* Selected Districts */}
+                    {filters.district.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                        {filters.district.map((district) => (
+                          <div
+                            key={district}
+                            className="flex items-center gap-1 bg-orange-100 text-[#f68014] px-2 sm:px-3 py-1 rounded-xl text-xs sm:text-sm"
+                          >
+                            <span className="truncate max-w-[120px] sm:max-w-[200px]">
+                              {district}
+                            </span>
+                            <button
+                              onClick={() => removeDistrict(district)}
+                              className="hover:text-orange-700 flex-shrink-0"
+                            >
+                              <X className="h-3 w-3 sm:h-4 sm:w-4" />
                             </button>
                           </div>
                         ))}
@@ -803,9 +785,9 @@ function PercentileDisplay() {
                 {/* Search Button */}
                 <button
                   onClick={applyFilters}
-                  className="w-full bg-[#f68014] text-white py-3 px-6 rounded-xl hover:bg-orange-600 transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                  className="w-full bg-[#f68014] text-white py-2 sm:py-3 px-4 sm:px-6 rounded-xl hover:bg-orange-600 transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-sm sm:text-base"
                 >
-                  <Search className="h-5 w-5" />
+                  <Search className="h-4 w-4 sm:h-5 sm:w-5" />
                   <span className="font-medium">Find Colleges</span>
                 </button>
               </div>
@@ -814,7 +796,7 @@ function PercentileDisplay() {
 
           {/* Results Panel */}
           <div className="lg:col-span-3">
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {/* Results */}
               {filteredColleges.length > 0 ? (
                 filteredColleges.map((college, idx) => (
@@ -822,35 +804,35 @@ function PercentileDisplay() {
                     key={idx}
                     className="bg-white rounded-2xl shadow-lg border border-orange-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden"
                   >
-                    <div className="p-6">
-                      <div className="flex items-start justify-between mb-4">
+                    <div className="p-4 sm:p-6">
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 sm:gap-6 mb-4">
                         <div className="flex-1">
-                          <h2 className="text-xl font-bold text-gray-800 mb-2 leading-tight">
+                          <h2 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 leading-tight">
                             {college.collegeName}
                           </h2>
-                          <div className="flex items-center space-x-4 text-sm mb-3">
-                            <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full font-medium">
+                          <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-sm mb-3">
+                            <span className="bg-green-100 text-green-800 px-2 sm:px-3 py-1 rounded-full font-medium text-xs sm:text-sm">
                               {college.status}
                             </span>
-                            <span className="text-gray-600 flex items-center space-x-1">
-                              <Award className="h-4 w-4" />
+                            <span className="text-gray-600 flex items-center space-x-1 text-xs sm:text-sm">
+                              <Award className="h-3 w-3 sm:h-4 sm:w-4" />
                               <span>{college.level}</span>
                             </span>
                           </div>
                           {college.district && (
-                            <p className="text-sm text-gray-600 flex items-center space-x-1 mb-2">
-                              <MapPin className="h-4 w-4" />
+                            <p className="text-xs sm:text-sm text-gray-600 flex items-center space-x-1 mb-2">
+                              <MapPin className="h-3 w-3 sm:h-4 sm:w-4" />
                               <span>District: {college.district}</span>
                             </p>
                           )}
                         </div>
 
-                        <div className="text-right ml-4">
-                          <div className="bg-[#f68014] text-white px-4 py-3 rounded-xl">
+                        <div className="text-right">
+                          <div className="bg-[#f68014] text-white px-3 sm:px-4 py-2 sm:py-3 rounded-xl inline-block">
                             <div className="text-xs font-medium opacity-90">
                               Best Closing
                             </div>
-                            <div className="text-lg text-left font-bold">
+                            <div className="text-base sm:text-lg text-left font-bold">
                               {college.closingPercentile.toFixed(1)}
                             </div>
                           </div>
@@ -859,7 +841,7 @@ function PercentileDisplay() {
 
                       {college.casteUsed && (
                         <div className="mb-4">
-                          <span className="bg-orange-50 text-[#f68014] px-3 py-1 rounded-full text-sm font-medium border border-orange-200">
+                          <span className="bg-orange-50 text-[#f68014] px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium border border-orange-200">
                             Seat found under:{" "}
                             <strong>{college.casteUsed}</strong> category
                           </span>
@@ -867,18 +849,18 @@ function PercentileDisplay() {
                       )}
 
                       <div className="border-t border-orange-100 pt-4">
-                        <h3 className="font-semibold text-gray-800 mb-3 flex items-center space-x-2">
-                          <BookOpen className="h-4 w-4 text-[#f68014]" />
+                        <h3 className="font-semibold text-gray-800 mb-3 flex items-center space-x-2 text-sm sm:text-base">
+                          <BookOpen className="h-3 w-3 sm:h-4 sm:w-4 text-[#f68014]" />
                           <span>Available Branches</span>
                         </h3>
                         <div className="space-y-2">
                           {college.branches.map((branch, i) => (
                             <div
                               key={i}
-                              className="bg-gray-50 rounded-lg px-3 py-2 text-sm text-gray-700 hover:bg-orange-50 transition-colors duration-200"
+                              className="bg-gray-50 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm text-gray-700 hover:bg-orange-50 transition-colors duration-200"
                             >
                               <span className="flex items-center space-x-2">
-                                <div className="w-2 h-2 bg-[#f68014] rounded-full"></div>
+                                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#f68014] rounded-full"></div>
                                 <span>{branch.branch_info}</span>
                               </span>
                             </div>
@@ -889,24 +871,24 @@ function PercentileDisplay() {
                   </div>
                 ))
               ) : (
-                <div className="bg-white rounded-2xl shadow-lg border border-orange-100 p-8 text-center">
-                  <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Search className="h-8 w-8 text-gray-400" />
+                <div className="bg-white rounded-2xl shadow-lg border border-orange-100 p-6 sm:p-8 text-center">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Search className="h-6 w-6 sm:h-8 sm:w-8 text-gray-400" />
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2">
                     No colleges found
                   </h3>
-                  <p className="text-gray-600 mb-4">
+                  <p className="text-sm sm:text-base text-gray-600 mb-4">
                     No colleges match your criteria. Try adjusting the filters.
                   </p>
 
-                  <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-4">
+                  <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 sm:p-4 mb-4">
                     <div className="flex items-start space-x-3">
-                      <div className="w-5 h-5 bg-amber-400 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <div className="w-4 h-4 sm:w-5 sm:h-5 bg-amber-400 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                         <span className="text-white text-xs font-bold">!</span>
                       </div>
                       <div className="text-left">
-                        <p className="text-amber-800 font-medium text-sm">
+                        <p className="text-amber-800 font-medium text-xs sm:text-sm">
                           <strong>
                             If you are not getting any results, it can mean that
                             there is no seat for your caste or gender in any
@@ -917,13 +899,13 @@ function PercentileDisplay() {
                     </div>
                   </div>
 
-                  <div className="bg-red-50 border border-red-200 rounded-xl p-4">
+                  <div className="bg-red-50 border border-red-200 rounded-xl p-3 sm:p-4">
                     <div className="flex items-start space-x-3">
-                      <div className="w-5 h-5 bg-red-400 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <div className="w-4 h-4 sm:w-5 sm:h-5 bg-red-400 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                         <span className="text-white text-xs font-bold">⚠</span>
                       </div>
                       <div className="text-left">
-                        <p className="text-red-800 text-sm">
+                        <p className="text-red-800 text-xs sm:text-sm">
                           <strong>Please note:</strong> This tool uses official
                           data provided by MHT-CET, but our model may make
                           mistakes or have limitations. Do not rely solely on
