@@ -7231,7 +7231,7 @@
   "Prof Ram Meghe College of Engineering and Management, Badnera": {
     "status": "Un-Aided",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Badnera",
+    "District": "Amravati",
     "branches": [
       {
         "branch_info": "Civil Engineering",
@@ -16041,7 +16041,7 @@
   "Mahatma Basaweshwar Education Society's College of Engineering, Ambejogai": {
     "status": "Un-Aided Home University : Dr. Babasaheb Ambedkar Marathwada University",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Ambejogai",
+    "District": "Beed",
     "branches": [
       {
         "branch_info": "Civil Engineering",
@@ -19254,7 +19254,7 @@
   "GRAMIN TECHNICAL AND MANAGEMENT CAMPUS NANDED.": {
     "status": "Un-Aided Home University : Swami Ramanand Teerth Marathwada University, Nanded",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Unknown",
+    "district": "Nanded",
     "branches": [
       {
         "branch_info": "Civil Engineering",
@@ -21928,7 +21928,7 @@
   "Sant Eknath College of Engineering": {
     "status": "Un-Aided Home University : Dr. Babasaheb Ambedkar Marathwada University",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Unknown",
+    "district": "B",
     "branches": [
       {
         "branch_info": "Computer Science and Engineering",
@@ -22314,7 +22314,7 @@
   "Sardar Patel College of Engineering, Andheri": {
     "status": "Government-Aided Autonomous",
     "level": "State Level",
-    "district": "Mumbai Suburban",
+    "District": "Mumbai",
     "branches": [
       {
         "branch_info": "Civil Engineering",
@@ -22486,7 +22486,7 @@
   "Svkm's Shri Bhagubhai Mafatlal Polytechnic & College of Engineering": {
     "status": "Un-Aided Linguistic Minority - Gujarathi Home University : Mumbai University",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Mumbai Suburban",
+    "District": "Mumbai",
     "branches": []
   },
   "Dr. Babasaheb Ambedkar Technological University, Lonere": {
@@ -36235,7 +36235,7 @@
   "K J Somaiya Institute of Technology": {
     "status": "Un-Aided Autonomous Linguistic Minority - Gujarathi",
     "level": "State Level",
-    "district": "Mumbai Suburban",
+    "District": "Mumbai",
     "branches": [
       {
         "branch_info": "Computer Engineering",
@@ -37915,7 +37915,7 @@
   "Yadavrao Tasgaonkar College of Engineering & Management": {
     "status": "Un-Aided",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Unknown",
+    "district": "Raigad",
     "branches": [
       {
         "branch_info": "Computer Engineering",
@@ -38751,7 +38751,7 @@
   "Haji Jamaluddin Thim Trust's Theem College of Engineering, At. Villege Betegaon, Boisar": {
     "status": "Un-Aided Religious Minority - Muslim",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Boisar",
+    "District": "Palghar",
     "branches": [
       {
         "branch_info": "Civil Engineering",
@@ -41300,7 +41300,7 @@
   "B.R. Harne College of Engineering & Technology, Karav, Tal-Ambernath.": {
     "status": "Un-Aided",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Tal-Ambernath",
+    "District": "Thane",
     "branches": [
       {
         "branch_info": "Computer Engineering",
@@ -44559,7 +44559,7 @@
   "Indala College Of Engineering, Bapsai Tal.Kalyan": {
     "status": "Un-Aided",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Bapsai Tal.Kalyan",
+    "District": "Raigad",
     "branches": [
       {
         "branch_info": "Computer Engineering",
@@ -56650,7 +56650,7 @@
   "M.D. Yergude Memorial Shikshan Prasarak Mandal's Shri Sai College of Engineering & Technology, Bhadrawati": {
     "status": "Un-Aided Home University : Gondwana University",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Bhadrawati",
+    "District": "Chandrapur",
     "branches": [
       {
         "branch_info": "Computer Science and Engineering",
@@ -57724,7 +57724,7 @@
   "Jai Mahakali Shikshan Sanstha, Agnihotri College of Engineering, Sindhi(Meghe)": {
     "status": "Un-Aided",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Sindhi(Meghe)",
+    "District": "Wardha",
     "branches": [
       {
         "branch_info": "Computer Science and Engineering",
@@ -64347,7 +64347,7 @@
   "Jagadamba Education Soc. Nashik's S.N.D. College of Engineering & Reserch, Babulgaon": {
     "status": "Un-Aided",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Babulgaon",
+    "District": "Yavatmal",
     "branches": [
       {
         "branch_info": "Civil Engineering",
@@ -70788,7 +70788,7 @@
   "Hindi Seva Mandal's Shri Sant Gadgebaba College of Engineering & Technology, Bhusawal": {
     "status": "Un-Aided Linguistic Minority - Hindi Home University : Kavayitri Bahinabai Chaudhari North Maharashtra University, Jalgaon",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Bhusawal",
+    "District": "Jalgaon",
     "branches": [
       {
         "branch_info": "Civil Engineering",
@@ -92257,7 +92257,7 @@
   "Al-Ameen Educational and Medical Foundation, College of Engineering, Koregaon, Bhima": {
     "status": "Un-Aided Religious Minority - Muslim",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Bhima",
+    "District": "Pune",
     "branches": [
       {
         "branch_info": "Computer Engineering",
@@ -112648,7 +112648,7 @@
   "Shanti Education Society, A.G. Patil Institute of Technology, Soregaon, Solapur(North)": {
     "status": "Un-Aided Home University : Punyashlok Ahilyadevi Holkar Solapur University",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Solapur(North)",
+    "district": "Solapur",
     "branches": [
       {
         "branch_info": "Civil Engineering",
@@ -114737,7 +114737,7 @@
   "Sharad Institute of Technology College of Engineering, Yadrav(Ichalkaranji)": {
     "status": "Un-Aided Autonomous Home University : Autonomous Institute",
     "level": "State Level",
-    "district": "Yadrav(Ichalkaranji)",
+    "District": "Kolhapur",
     "branches": [
       {
         "branch_info": "Civil Engineering",
@@ -117589,7 +117589,7 @@
   "Shree Gajanan Maharaj Shikshan Prasarak Manda'l Sharadchandra Pawar College of Engineering, Dumbarwadi": {
     "status": "Un-Aided",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Dumbarwadi",
+    "District": "Pune",
     "branches": [
       {
         "branch_info": "Computer Engineering",
@@ -117916,7 +117916,7 @@
   "Rajgad Dnyanpeeth's Shri Chhatrapati Shivajiraje College of Engineering, Bhor": {
     "status": "Un-Aided",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Bhor",
+    "District": "Pune",
     "branches": [
       {
         "branch_info": "Civil Engineering",
@@ -130016,7 +130016,7 @@
   "Phaltan Education Society's College of Engineering Thakurki Tal- Phaltan Dist-Satara": {
     "status": "Un-Aided Home University : Shivaji University",
     "level": "Home University Seats Allotted to Other Than Home University Candidates",
-    "district": "Unknown",
+    "district": "Satara",
     "branches": [
       {
         "branch_info": "Civil Engineering",
@@ -132904,7 +132904,7 @@
   "Bhagwant Institute of Technology, Barshi": {
     "status": "Un-Aided Home University : Punyashlok Ahilyadevi Holkar Solapur University",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Barshi",
+    "District": "Solapur",
     "branches": [
       {
         "branch_info": "Civil Engineering",
@@ -134209,7 +134209,7 @@
   "Shri.Someshwar Shikshan Prasarak Mandal, Sharadchandra Pawar College of Engineering & Technology, Someshwar Nagar": {
     "status": "Un-Aided",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Someshwar Nagar",
+    "District": "Pune",
     "branches": [
       {
         "branch_info": "Civil Engineering",
@@ -138120,7 +138120,7 @@
   "MAEER's MIT College of Railway Engineering and Research, Jamgaon, Barshi": {
     "status": "Un-Aided",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Barshi",
+    "District": "Solapur",
     "branches": [
       {
         "branch_info": "Civil Engineering",
@@ -138538,7 +138538,7 @@
   "Shree Siddheshwar Women's College Of Engineering Solapur.": {
     "status": "Un-Aided Home University : Punyashlok Ahilyadevi Holkar Solapur University",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Unknown",
+    "district": "Solapur",
     "branches": []
   },
   "Dr. D.Y. Patil Technical Campus, Varale, Talegaon, Pune": {

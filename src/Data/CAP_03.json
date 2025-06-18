@@ -3139,7 +3139,7 @@
   "Prof Ram Meghe College of Engineering and Management, Badnera": {
     "status": "Un-Aided",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Badnera",
+    "District": "Amravati",
     "branches": [
       {
         "branch_info": "Civil Engineering",
@@ -7063,7 +7063,7 @@
   "Mahatma Basaweshwar Education Society's College of Engineering, Ambejogai": {
     "status": "Un-Aided Home University : Dr. Babasaheb Ambedkar Marathwada University",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Ambejogai",
+    "District": "Beed",
     "branches": [
       {
         "branch_info": "Civil Engineering",
@@ -19159,7 +19159,7 @@
   "Haji Jamaluddin Thim Trust's Theem College of Engineering, At. Villege Betegaon, Boisar": {
     "status": "Un-Aided Religious Minority - Muslim",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Boisar",
+    "District": "Palghar",
     "branches": [
       {
         "branch_info": "Computer Engineering",
@@ -22026,7 +22026,7 @@
   "Indala College Of Engineering, Bapsai Tal.Kalyan": {
     "status": "Un-Aided",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Bapsai Tal.Kalyan",
+    "District": "Raigad",
     "branches": [
       {
         "branch_info": "Civil Engineering",
@@ -28564,7 +28564,7 @@
   "M.D. Yergude Memorial Shikshan Prasarak Mandal's Shri Sai College of Engineering & Technology, Bhadrawati": {
     "status": "Un-Aided Home University : Gondwana University",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Bhadrawati",
+    "District": "Chandrapur",
     "branches": [
       {
         "branch_info": "Computer Science and Engineering",
@@ -29178,7 +29178,7 @@
   "Jai Mahakali Shikshan Sanstha, Agnihotri College of Engineering, Sindhi(Meghe)": {
     "status": "Un-Aided",
     "level": "Other Than Home University Seats Allotted to Other Than Home University Candidates",
-    "district": "Sindhi(Meghe)",
+    "District": "Wardha",
     "branches": [
       {
         "branch_info": "Civil Engineering",
@@ -29568,109 +29568,109 @@
     ]
   },
   "MKSSS’s Cummins College of Engineering for Women, Karvenagar, Pune": {
-  "status": "Un-Aided Autonomous",
-  "level": "State Level",
-  "district": "Pune",
-  "branches": [
-    {
-      "branch_info": "Computer Engineering",
-      "table_data": [
-        {
-          "null": "I",
-          "LOPENS": "9265\n(96.7385877)",
-          "LSCS": "10149\n(96.1450688)",
-          "LVJS": "7418\n(97.3305681)",
-          "LNT1S": "12313\n(95.0744473)",
-          "LNT2S": "8266\n(96.7503746)",
-          "LNT3S": "8621\n(96.5673418)",
-          "LOBCS": "6552\n(98.2241115)",
-          "PWDOPENS": "4157\n(91.2586291)",
-          "PWDOBCS": "8268\n(96.7503746)",
-          "DEFOPENS": "13199\n(94.7480662)",
-          "DEFSC": "3676\n(93.5160417)",
-          "DEFROBCS": "9410\n(94.7226062)",
-          "PWDOBCS": "6710\n(98.1195629)",
-          "DEFNT1S": "15291\n(93.0091878)",
-          "DEFROBCS": "12455\n(94.1536621)",
-          "ORPHAN": "3841\n(94.1536621)",
-          "EWS": "4254\n(98.3697579)"
-        }
-      ]
-    },
-    {
-      "branch_info": "Information Technology",
-      "table_data": [
-        {
-          "null": "I",
-          "LOPENS": "4867\n(97.7372782)",
-          "LSCS": "9879\n(96.1450688)",
-          "LVJS": "8413\n(97.3305681)",
-          "LNT1S": "9432\n(96.7503746)",
-          "LNT2S": "10395\n(96.0937193)",
-          "LOBCS": "5854\n(98.1452486)",
-          "PWDOPENS": "11425\n(94.9365242)",
-          "DEFOPENS": "21058\n(91.4822586)",
-          "DEFROBCS": "4253\n(98.3697579)",
-          "EWS": "4253\n(98.3697579)"
-        }
-      ]
-    },
-    {
-      "branch_info": "Electronics and Telecommunication Engg",
-      "table_data": [
-        {
-          "null": "I",
-          "LOPENS": "8286\n(96.5673418)",
-          "LSCS": "9186\n(96.1450688)",
-          "LVJS": "12565\n(94.7226062)",
-          "LNT1S": "3275\n(97.1523959)",
-          "LNT2S": "14538\n(93.5868331)",
-          "LNT3S": "16489\n(92.5679714)",
-          "LOBCS": "10427\n(95.9742723)",
-          "DEFOPENS": "22584\n(91.1450586)",
-          "DEFSC": "28611\n(89.5585177)",
-          "DEFNT1S": "3543\n(96.5411471)",
-          "DEFROBCS": "2278\n(97.7305681)",
-          "EWS": "7679\n(96.9731871)"
-        }
-      ]
-    },
-    {
-      "branch_info": "Instrumentation and Control Engineering",
-      "table_data": [
-        {
-          "null": "I",
-          "LOPENS": "19283\n(92.2286494)",
-          "LSCS": "9836\n(96.1450688)",
-          "LVJS": "4174\n(98.2241115)",
-          "LNT2S": "5192\n(95.0744473)",
-          "LNT3S": "25434\n(89.9648566)",
-          "LOBCS": "25014\n(90.1683008)",
-          "DEFOPENS": "19483\n(92.1564752)",
-          "EWS": "1932\n(98.3697579)"
-        }
-      ]
-    },
-    {
-      "branch_info": "Mechanical Engineering",
-      "table_data": [
-        {
-          "null": "I",
-          "LOPENS": "17675\n(92.0163617)",
-          "LSCS": "9134\n(96.4280986)",
-          "LVJS": "5229\n(97.7466846)",
-          "LNT1S": "4798\n(97.1451481)",
-          "LNT2S": "5730\n(95.1146183)",
-          "LNT3S": "5431\n(95.1210671)",
-          "LOBCS": "2662\n(98.2725582)",
-          "DEFOPENS": "4654\n(98.2756741)",
-          "DEFROBCS": "5245\n(94.9777879)",
-          "EWS": "10273\n(92.7786438)"
-        }
-      ]
-    }
-  ]
-},
+    "status": "Un-Aided Autonomous",
+    "level": "State Level",
+    "district": "Pune",
+    "branches": [
+      {
+        "branch_info": "Computer Engineering",
+        "table_data": [
+          {
+            "null": "I",
+            "LOPENS": "9265\n(96.7385877)",
+            "LSCS": "10149\n(96.1450688)",
+            "LVJS": "7418\n(97.3305681)",
+            "LNT1S": "12313\n(95.0744473)",
+            "LNT2S": "8266\n(96.7503746)",
+            "LNT3S": "8621\n(96.5673418)",
+            "LOBCS": "6552\n(98.2241115)",
+            "PWDOPENS": "4157\n(91.2586291)",
+            "PWDOBCS": "8268\n(96.7503746)",
+            "DEFOPENS": "13199\n(94.7480662)",
+            "DEFSC": "3676\n(93.5160417)",
+            "DEFROBCS": "9410\n(94.7226062)",
+            "PWDOBCS": "6710\n(98.1195629)",
+            "DEFNT1S": "15291\n(93.0091878)",
+            "DEFROBCS": "12455\n(94.1536621)",
+            "ORPHAN": "3841\n(94.1536621)",
+            "EWS": "4254\n(98.3697579)"
+          }
+        ]
+      },
+      {
+        "branch_info": "Information Technology",
+        "table_data": [
+          {
+            "null": "I",
+            "LOPENS": "4867\n(97.7372782)",
+            "LSCS": "9879\n(96.1450688)",
+            "LVJS": "8413\n(97.3305681)",
+            "LNT1S": "9432\n(96.7503746)",
+            "LNT2S": "10395\n(96.0937193)",
+            "LOBCS": "5854\n(98.1452486)",
+            "PWDOPENS": "11425\n(94.9365242)",
+            "DEFOPENS": "21058\n(91.4822586)",
+            "DEFROBCS": "4253\n(98.3697579)",
+            "EWS": "4253\n(98.3697579)"
+          }
+        ]
+      },
+      {
+        "branch_info": "Electronics and Telecommunication Engg",
+        "table_data": [
+          {
+            "null": "I",
+            "LOPENS": "8286\n(96.5673418)",
+            "LSCS": "9186\n(96.1450688)",
+            "LVJS": "12565\n(94.7226062)",
+            "LNT1S": "3275\n(97.1523959)",
+            "LNT2S": "14538\n(93.5868331)",
+            "LNT3S": "16489\n(92.5679714)",
+            "LOBCS": "10427\n(95.9742723)",
+            "DEFOPENS": "22584\n(91.1450586)",
+            "DEFSC": "28611\n(89.5585177)",
+            "DEFNT1S": "3543\n(96.5411471)",
+            "DEFROBCS": "2278\n(97.7305681)",
+            "EWS": "7679\n(96.9731871)"
+          }
+        ]
+      },
+      {
+        "branch_info": "Instrumentation and Control Engineering",
+        "table_data": [
+          {
+            "null": "I",
+            "LOPENS": "19283\n(92.2286494)",
+            "LSCS": "9836\n(96.1450688)",
+            "LVJS": "4174\n(98.2241115)",
+            "LNT2S": "5192\n(95.0744473)",
+            "LNT3S": "25434\n(89.9648566)",
+            "LOBCS": "25014\n(90.1683008)",
+            "DEFOPENS": "19483\n(92.1564752)",
+            "EWS": "1932\n(98.3697579)"
+          }
+        ]
+      },
+      {
+        "branch_info": "Mechanical Engineering",
+        "table_data": [
+          {
+            "null": "I",
+            "LOPENS": "17675\n(92.0163617)",
+            "LSCS": "9134\n(96.4280986)",
+            "LVJS": "5229\n(97.7466846)",
+            "LNT1S": "4798\n(97.1451481)",
+            "LNT2S": "5730\n(95.1146183)",
+            "LNT3S": "5431\n(95.1210671)",
+            "LOBCS": "2662\n(98.2725582)",
+            "DEFOPENS": "4654\n(98.2756741)",
+            "DEFROBCS": "5245\n(94.9777879)",
+            "EWS": "10273\n(92.7786438)"
+          }
+        ]
+      }
+    ]
+  },
   "Suryodaya College of Engineering & Technology, Nagpur": {
     "status": "Un-Aided",
     "level": "Home University Seats Allotted to Home University Candidates",
@@ -32209,7 +32209,7 @@
   "Jagadamba Education Soc. Nashik's S.N.D. College of Engineering & Reserch, Babulgaon": {
     "status": "Un-Aided",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Babulgaon",
+    "District": "Yavatmal",
     "branches": [
       {
         "branch_info": "Civil Engineering",
@@ -35152,7 +35152,7 @@
   "Hindi Seva Mandal's Shri Sant Gadgebaba College of Engineering & Technology, Bhusawal": {
     "status": "Un-Aided Linguistic Minority - Hindi Home University : Kavayitri Bahinabai Chaudhari North Maharashtra University, Jalgaon",
     "level": "Other Than Home University Seats Allotted to Other Than Home University Candidates",
-    "district": "Bhusawal",
+    "District": "Jalgaon",
     "branches": [
       {
         "branch_info": "Computer Science and Engineering",
@@ -45734,7 +45734,7 @@
   "Al-Ameen Educational and Medical Foundation, College of Engineering, Koregaon, Bhima": {
     "status": "Un-Aided Religious Minority - Muslim",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Bhima",
+    "District": "Pune",
     "branches": [
       {
         "branch_info": "Computer Engineering",
@@ -54574,7 +54574,7 @@
   "Shanti Education Society, A.G. Patil Institute of Technology, Soregaon, Solapur(North)": {
     "status": "Un-Aided Home University : Punyashlok Ahilyadevi Holkar Solapur University",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Solapur(North)",
+    "District": "Solapur",
     "branches": [
       {
         "branch_info": "Computer Engineering",
@@ -56354,7 +56354,7 @@
   "Shree Gajanan Maharaj Shikshan Prasarak Manda'l Sharadchandra Pawar College of Engineering, Dumbarwadi": {
     "status": "Un-Aided",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Dumbarwadi",
+    "District": "Pune",
     "branches": [
       {
         "branch_info": "Computer Engineering",
@@ -56500,7 +56500,7 @@
   "Rajgad Dnyanpeeth's Technical Campus,Dhangwadi, Bhor": {
     "status": "Un-Aided",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Bhor",
+    "District": "Pune",
     "branches": [
       {
         "branch_info": "Civil Engineering",
@@ -62965,7 +62965,7 @@
   "Bhagwant Institute of Technology, Barshi": {
     "status": "Un-Aided Home University : Punyashlok Ahilyadevi Holkar Solapur University",
     "level": "State Level",
-    "district": "Barshi",
+    "District": "Solapur",
     "branches": [
       {
         "branch_info": "Civil Engineering",
@@ -65779,7 +65779,7 @@
   "MAEER's MIT College of Railway Engineering and Research, Jamgaon, Barshi": {
     "status": "Un-Aided",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Barshi",
+    "District": "Solapur",
     "branches": [
       {
         "branch_info": "Computer Science and Engineering",

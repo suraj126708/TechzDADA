@@ -5275,7 +5275,7 @@
   "Prof Ram Meghe College of Engineering and Management, Badnera": {
     "status": "Un-Aided",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Badnera",
+    "District": "Amravati",
     "branches": [
       {
         "branch_info": "Civil Engineering",
@@ -11561,7 +11561,7 @@
   "Mahatma Basaweshwar Education Society's College of Engineering, Ambejogai": {
     "status": "Un-Aided Home University : Dr. Babasaheb Ambedkar Marathwada University",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Ambejogai",
+    "District": "Beed",
     "branches": [
       {
         "branch_info": "Civil Engineering",
@@ -28882,7 +28882,7 @@
   "Haji Jamaluddin Thim Trust's Theem College of Engineering, At. Villege Betegaon, Boisar": {
     "status": "Un-Aided Religious Minority - Muslim",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Boisar",
+    "District": "Palghar",
     "branches": [
       {
         "branch_info": "Computer Engineering",
@@ -41907,7 +41907,7 @@
   "M.D. Yergude Memorial Shikshan Prasarak Mandal's Shri Sai College of Engineering & Technology, Bhadrawati": {
     "status": "Un-Aided Home University : Gondwana University",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Bhadrawati",
+    "District": "Chandrapur",
     "branches": [
       {
         "branch_info": "Civil Engineering",
@@ -42725,7 +42725,7 @@
   "Jai Mahakali Shikshan Sanstha, Agnihotri College of Engineering, Sindhi(Meghe)": {
     "status": "Un-Aided",
     "level": "Home University Seats Allotted to Other Than Home University Candidates",
-    "district": "Sindhi(Meghe)",
+    "District": "Wardha",
     "branches": [
       {
         "branch_info": "Civil Engineering",
@@ -47755,7 +47755,7 @@
   "Jagadamba Education Soc. Nashik's S.N.D. College of Engineering & Reserch, Babulgaon": {
     "status": "Un-Aided",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Babulgaon",
+    "District": "Yavatmal",
     "branches": [
       {
         "branch_info": "Civil Engineering",
@@ -52394,7 +52394,7 @@
   "Hindi Seva Mandal's Shri Sant Gadgebaba College of Engineering & Technology, Bhusawal": {
     "status": "Un-Aided Linguistic Minority - Hindi Home University : Kavayitri Bahinabai Chaudhari North Maharashtra University, Jalgaon",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Bhusawal",
+    "District": "Jalgaon",
     "branches": [
       {
         "branch_info": "Computer Science and Engineering",
@@ -67894,7 +67894,7 @@
   "Al-Ameen Educational and Medical Foundation, College of Engineering, Koregaon, Bhima": {
     "status": "Un-Aided Religious Minority - Muslim",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Bhima",
+    "District": "Pune",
     "branches": [
       {
         "branch_info": "Computer Engineering",
@@ -86253,7 +86253,7 @@
   "Shree Gajanan Maharaj Shikshan Prasarak Manda'l Sharadchandra Pawar College of Engineering, Dumbarwadi": {
     "status": "Un-Aided",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Dumbarwadi",
+    "District": "Pune",
     "branches": [
       {
         "branch_info": "Computer Engineering",
@@ -86408,7 +86408,7 @@
   "Rajgad Dnyanpeeth's Technical Campus,Dhangwadi, Bhor": {
     "status": "Un-Aided",
     "level": "Other Than Home University Seats Allotted to Other Than Home University Candidates",
-    "district": "Bhor",
+    "District": "Pune",
     "branches": [
       {
         "branch_info": "Civil Engineering",
@@ -96102,7 +96102,7 @@
   "Bhagwant Institute of Technology, Barshi": {
     "status": "Un-Aided Home University : Punyashlok Ahilyadevi Holkar Solapur University",
     "level": "Home University Seats Allotted to Home University Candidates",
-    "district": "Barshi",
+    "District": "Solapur",
     "branches": [
       {
         "branch_info": "Civil Engineering",
@@ -100265,7 +100265,7 @@
   "MAEER's MIT College of Railway Engineering and Research, Jamgaon, Barshi": {
     "status": "Un-Aided",
     "level": "State Level",
-    "district": "Barshi",
+    "District": "Solapur",
     "branches": [
       {
         "branch_info": "Civil Engineering",

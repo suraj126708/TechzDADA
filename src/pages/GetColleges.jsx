@@ -3,6 +3,9 @@ import React, { useState, useEffect } from "react";
 import CAP01 from "../Data/CAP_01_2024.json";
 import CAP02 from "../Data/CAP_02_2024.json";
 import CAP03 from "../Data/CAP_03_2024.json";
+import AI_CAP1 from "../Data/AI_CAP1.json";
+import AI_CAP2 from "../Data/AI_CAP2.json";
+import AI_CAP3 from "../Data/AI_CAP3.json";
 
 import {
   Search,
@@ -36,6 +39,7 @@ const casteFallbackOrder = {
 function PercentileDisplay() {
   const [availableBranches, setAvailableBranches] = useState([]);
   const [capRound, setCapRound] = useState("01");
+  const [examType, setExamType] = useState("MHT-CET");
 
   const casteCategories = [
     { value: "OPEN", label: "Open Category" },
@@ -69,27 +73,46 @@ function PercentileDisplay() {
   const [availableDistricts, setAvailableDistricts] = useState([]);
 
   useEffect(() => {
-    // Pick the correct CAP data based on capRound
-    let capData;
-    if (capRound === "01") capData = CAP01;
-    else if (capRound === "02") capData = CAP02;
-    else capData = CAP03;
+    // Pick the correct data based on exam type and capRound
+    let data;
+    if (examType === "MHT-CET") {
+      if (capRound === "01") data = CAP01;
+      else if (capRound === "02") data = CAP02;
+      else data = CAP03;
+    } else {
+      if (capRound === "01") data = AI_CAP1;
+      else if (capRound === "02") data = AI_CAP2;
+      else data = AI_CAP3;
+    }
 
     const branchesSet = new Set();
     const districtsSet = new Set();
 
-    Object.values(capData).forEach((college) => {
-      if (college.district) {
-        districtsSet.add(college.district);
-      }
-      college.branches.forEach((branch) => {
-        branchesSet.add(branch.branch_info);
+    if (examType === "MHT-CET") {
+      Object.values(data).forEach((college) => {
+        if (college.district) {
+          districtsSet.add(college.district);
+        }
+        college.branches.forEach((branch) => {
+          branchesSet.add(branch.branch_info);
+        });
       });
-    });
+    } else {
+      // Handle JEE data structure
+      data.forEach((college) => {
+        if (college.District) {
+          districtsSet.add(college.District);
+        }
+        college.Courses.forEach((course) => {
+          branchesSet.add(course["Course Name"]);
+        });
+      });
+    }
 
+    console.log(Array.from(districtsSet).sort());
     setAvailableBranches(Array.from(branchesSet).sort());
     setAvailableDistricts(Array.from(districtsSet).sort());
-  }, [capRound]);
+  }, [capRound, examType]);
 
   // Function to get all matching caste codes for a selected category with gender, defence, and PWD considerations
   const getMatchingCastes = (selectedCaste, gender, isDefence, isPWD) => {
@@ -346,8 +369,13 @@ function PercentileDisplay() {
     const { percentile, caste, branch, district, gender, isDefence, isPWD } =
       filters;
 
-    if (!percentile || !caste) {
-      alert("Please enter your percentile and select a caste category");
+    if (!percentile) {
+      alert("Please enter your percentile");
+      return;
+    }
+
+    if (examType === "MHT-CET" && !caste) {
+      alert("Please select a caste category");
       return;
     }
 
@@ -360,138 +388,210 @@ function PercentileDisplay() {
     // Use suggested percentile if available
     const percentileToUse = suggestedPercentile || percentileValue;
 
-    let capData;
-    if (capRound === "01") capData = CAP01;
-    else if (capRound === "02") capData = CAP02;
-    else capData = CAP03;
+    let data;
+    if (examType === "MHT-CET") {
+      if (capRound === "01") data = CAP01;
+      else if (capRound === "02") data = CAP02;
+      else data = CAP03;
+    } else {
+      if (capRound === "01") data = AI_CAP1;
+      else if (capRound === "02") data = AI_CAP2;
+      else data = AI_CAP3;
+    }
 
-    // Get fallback order for selected caste
-    const fallbackCastes = casteFallbackOrder[caste] || [caste];
+    let results = [];
 
-    let results = Object.entries(capData)
-      .map(([collegeName, collegeInfo]) => {
-        // Filter by district first
-        const districtMatch =
-          district.length === 0 || // If no districts selected, show all
-          district.some(
-            (selectedDistrict) =>
-              collegeInfo.district?.toLowerCase() ===
-              selectedDistrict.toLowerCase()
-          );
+    if (examType === "MHT-CET") {
+      // Get fallback order for selected caste
+      const fallbackCastes = casteFallbackOrder[caste] || [caste];
 
-        if (!districtMatch) return null;
+      results = Object.entries(data)
+        .map(([collegeName, collegeInfo]) => {
+          // Filter by district first
+          const districtMatch =
+            district.length === 0 || // If no districts selected, show all
+            district.some(
+              (selectedDistrict) =>
+                collegeInfo.district?.toLowerCase() ===
+                selectedDistrict.toLowerCase()
+            );
 
-        let foundBranches = [];
-        let usedCaste = null;
-        let bestPercentile = 0;
+          if (!districtMatch) return null;
 
-        // First try with selected caste and filters
-        for (let fallbackCaste of fallbackCastes) {
-          const seatCode = getExactSeatCode(
-            fallbackCaste,
-            gender,
-            isDefence,
-            isPWD,
-            collegeInfo.level
-          );
+          let foundBranches = [];
+          let usedCaste = null;
+          let bestPercentile = 0;
 
-          let branches = collegeInfo.branches.filter((b) => {
-            // Check if branch matches any of the selected branches
-            const branchMatch =
-              branch.length === 0 || // If no branches selected, show all
-              branch.some((selectedBranch) =>
-                b.branch_info
-                  .toLowerCase()
-                  .includes(selectedBranch.toLowerCase())
-              );
+          // First try with selected caste and filters
+          for (let fallbackCaste of fallbackCastes) {
+            const seatCode = getExactSeatCode(
+              fallbackCaste,
+              gender,
+              isDefence,
+              isPWD,
+              collegeInfo.level
+            );
 
-            if (!branchMatch) return false;
+            let branches = collegeInfo.branches.filter((b) => {
+              // Check if branch matches any of the selected branches
+              const branchMatch =
+                branch.length === 0 || // If no branches selected, show all
+                branch.some((selectedBranch) =>
+                  b.branch_info
+                    .toLowerCase()
+                    .includes(selectedBranch.toLowerCase())
+                );
 
-            const percentileMatch = b.table_data.some((row) => {
-              if (seatCode in row) {
-                const cutoffData = row[seatCode];
-                if (cutoffData) {
-                  const cutoffPercentile = parseFloat(
-                    cutoffData.split("\n")[1]?.replace(/[()]/g, "")
-                  );
-                  return (
-                    !isNaN(cutoffPercentile) &&
-                    percentileToUse >= cutoffPercentile
-                  );
-                }
-              }
-              return false;
-            });
+              if (!branchMatch) return false;
 
-            return percentileMatch;
-          });
-
-          if (branches.length > 0) {
-            // Calculate best cutoff for each branch
-            branches = branches.map((b) => {
-              let branchBestPercentile = 0;
-              let branchBestCaste = fallbackCaste;
-
-              // Only check cutoffs for the current fallback caste
-              b.table_data.forEach((row) => {
+              const percentileMatch = b.table_data.some((row) => {
                 if (seatCode in row) {
                   const cutoffData = row[seatCode];
                   if (cutoffData) {
                     const cutoffPercentile = parseFloat(
                       cutoffData.split("\n")[1]?.replace(/[()]/g, "")
                     );
-                    if (
+                    return (
                       !isNaN(cutoffPercentile) &&
-                      cutoffPercentile > branchBestPercentile
-                    ) {
-                      branchBestPercentile = cutoffPercentile;
-                      branchBestCaste = fallbackCaste;
-                    }
+                      percentileToUse >= cutoffPercentile
+                    );
                   }
                 }
+                return false;
               });
 
-              return {
-                ...b,
-                bestCutoff: branchBestPercentile,
-                bestCaste: branchBestCaste,
-              };
+              return percentileMatch;
             });
 
-            // Filter branches to only show those that match user's selected branches
-            if (branch.length > 0) {
-              branches = branches.filter((b) =>
-                branch.some((selectedBranch) =>
-                  b.branch_info
-                    .toLowerCase()
-                    .includes(selectedBranch.toLowerCase())
-                )
-              );
+            if (branches.length > 0) {
+              // Calculate best cutoff for each branch
+              branches = branches.map((b) => {
+                let branchBestPercentile = 0;
+                let branchBestCaste = fallbackCaste;
+
+                // Only check cutoffs for the current fallback caste
+                b.table_data.forEach((row) => {
+                  if (seatCode in row) {
+                    const cutoffData = row[seatCode];
+                    if (cutoffData) {
+                      const cutoffPercentile = parseFloat(
+                        cutoffData.split("\n")[1]?.replace(/[()]/g, "")
+                      );
+                      if (
+                        !isNaN(cutoffPercentile) &&
+                        cutoffPercentile > branchBestPercentile
+                      ) {
+                        branchBestPercentile = cutoffPercentile;
+                        branchBestCaste = fallbackCaste;
+                      }
+                    }
+                  }
+                });
+
+                return {
+                  ...b,
+                  bestCutoff: branchBestPercentile,
+                  bestCaste: branchBestCaste,
+                };
+              });
+
+              // Filter branches to only show those that match user's selected branches
+              if (branch.length > 0) {
+                branches = branches.filter((b) =>
+                  branch.some((selectedBranch) =>
+                    b.branch_info
+                      .toLowerCase()
+                      .includes(selectedBranch.toLowerCase())
+                  )
+                );
+              }
+
+              foundBranches = branches;
+              usedCaste = fallbackCaste;
+              bestPercentile = Math.max(...branches.map((b) => b.bestCutoff));
+              break;
             }
-
-            foundBranches = branches;
-            usedCaste = fallbackCaste;
-            bestPercentile = Math.max(...branches.map((b) => b.bestCutoff));
-            break;
           }
-        }
 
-        if (foundBranches.length > 0) {
-          return {
-            collegeName,
-            status: collegeInfo.status,
-            level: collegeInfo.level,
-            district: collegeInfo.district,
-            branches: foundBranches.sort((a, b) =>
-              a.branch_info.localeCompare(b.branch_info)
-            ),
-            closingPercentile: bestPercentile,
-            casteUsed: usedCaste,
-          };
-        }
-        return null;
-      })
-      .filter(Boolean);
+          if (foundBranches.length > 0) {
+            return {
+              collegeName,
+              status: collegeInfo.status,
+              level: collegeInfo.level,
+              district: collegeInfo.district,
+              branches: foundBranches.sort((a, b) =>
+                a.branch_info.localeCompare(b.branch_info)
+              ),
+              closingPercentile: bestPercentile,
+              casteUsed: usedCaste,
+            };
+          }
+          return null;
+        })
+        .filter(Boolean);
+    } else {
+      // JEE filtering logic
+      results = data
+        .map((college) => {
+          // Filter by district first
+          const districtMatch =
+            district.length === 0 || // If no districts selected, show all
+            district.some(
+              (selectedDistrict) =>
+                college.District?.toLowerCase() ===
+                selectedDistrict.toLowerCase()
+            );
+
+          if (!districtMatch) return null;
+
+          const matchingCourses = college.Courses.filter((course) => {
+            const branchMatch =
+              branch.length === 0 ||
+              branch.some((selectedBranch) =>
+                course["Course Name"]
+                  .toLowerCase()
+                  .includes(selectedBranch.toLowerCase())
+              );
+
+            if (!branchMatch) return false;
+
+            const meritData = course["All India Merit"].split(" ");
+            const cutoffPercentile = parseFloat(
+              meritData[1]?.replace(/[()]/g, "")
+            );
+
+            return (
+              !isNaN(cutoffPercentile) && percentileToUse >= cutoffPercentile
+            );
+          });
+
+          if (matchingCourses.length > 0) {
+            return {
+              collegeName: college["Institute Name"],
+              status: matchingCourses[0]["Merit Exam"],
+              level: "All India",
+              district: college.District,
+              branches: matchingCourses.map((course) => ({
+                branch_info: course["Course Name"],
+                bestCutoff: parseFloat(
+                  course["All India Merit"].split(" ")[1]?.replace(/[()]/g, "")
+                ),
+              })),
+              closingPercentile: Math.max(
+                ...matchingCourses.map((course) =>
+                  parseFloat(
+                    course["All India Merit"]
+                      .split(" ")[1]
+                      ?.replace(/[()]/g, "")
+                  )
+                )
+              ),
+            };
+          }
+          return null;
+        })
+        .filter(Boolean);
+    }
 
     // Sort results by closing percentile in descending order
     results.sort((a, b) => b.closingPercentile - a.closingPercentile);
@@ -514,12 +614,12 @@ function PercentileDisplay() {
                 style={{ fontSize: "1.5rem" }}
                 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-bold text-[#f68014] sm:mb-0 text-center"
               >
-                MHT CET College Predictor 2025
+                College Predictor 2025
               </h1>
             </div>
             <p className="text-sm xs:text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-2">
-              Find your perfect engineering college based on your percentile,
-              caste category, and preferences
+              Find your perfect engineering college based on your percentile and
+              preferences
             </p>
           </div>
         </div>
@@ -538,32 +638,29 @@ function PercentileDisplay() {
               </div>
 
               <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
-                {/* Percentile Input */}
+                {/* Exam Type Selection */}
                 <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700 flex items-center space-x-2">
-                    <Award className="h-4 w-4 text-[#f68014]" />
-                    <span>Your Percentile</span>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Select Exam Type
                   </label>
-                  <div className="relative">
-                    <input
-                      type="number"
-                      name="percentile"
-                      value={filters.percentile}
-                      onChange={handleFilterChange}
-                      className={`w-full px-3 sm:px-4 py-2 sm:py-3 border ${
-                        percentileError ? "border-red-300" : "border-orange-200"
-                      } rounded-xl focus:ring-2 focus:ring-[#f68014] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white text-sm sm:text-base`}
-                      placeholder="Enter percentile (e.g., 85.5)"
-                      min="0"
-                      max="100"
-                      step="0.01"
-                    />
-                    {percentileError && (
-                      <div className="mt-1 text-xs sm:text-sm text-red-600 flex items-center gap-1">
-                        <X className="h-3 w-3 sm:h-4 sm:w-4" />
-                        <span>{percentileError}</span>
-                      </div>
-                    )}
+                  <div className="grid grid-cols-2 gap-2">
+                    {["MHT-CET", "JEE"].map((type) => (
+                      <label key={type} className="relative">
+                        <input
+                          type="radio"
+                          name="examType"
+                          value={type}
+                          checked={examType === type}
+                          onChange={() => setExamType(type)}
+                          className="peer sr-only"
+                        />
+                        <div className="px-2 sm:px-3 py-1.5 sm:py-2 bg-gray-100 border border-orange-200 rounded-lg text-center cursor-pointer transition-all duration-200 peer-checked:bg-[#f68014] peer-checked:text-white peer-checked:border-[#f68014] hover:border-orange-300">
+                          <span className="text-xs sm:text-sm font-medium">
+                            {type}
+                          </span>
+                        </div>
+                      </label>
+                    ))}
                   </div>
                 </div>
 
@@ -593,72 +690,105 @@ function PercentileDisplay() {
                   </div>
                 </div>
 
-                {/* Caste Category */}
+                {/* Percentile Input */}
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700 flex items-center space-x-2">
-                    <Users className="h-4 w-4 text-[#f68014]" />
-                    <span>Select Caste Category</span>
+                    <Award className="h-4 w-4 text-[#f68014]" />
+                    <span>Your Percentile</span>
                   </label>
                   <div className="relative">
-                    <select
-                      name="caste"
-                      value={filters.caste}
+                    <input
+                      type="number"
+                      name="percentile"
+                      value={filters.percentile}
                       onChange={handleFilterChange}
-                      className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-orange-200 rounded-xl focus:ring-2 focus:ring-[#f68014] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white appearance-none cursor-pointer text-sm sm:text-base"
-                    >
-                      <option value="">-- Select Caste Category --</option>
-                      {casteCategories.map((category) => (
-                        <option key={category.value} value={category.value}>
-                          {category.label}
-                        </option>
-                      ))}
-                    </select>
-                    <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500 pointer-events-none" />
+                      className={`w-full px-3 sm:px-4 py-2 sm:py-3 border ${
+                        percentileError ? "border-red-300" : "border-orange-200"
+                      } rounded-xl focus:ring-2 focus:ring-[#f68014] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white text-sm sm:text-base`}
+                      placeholder="Enter percentile (e.g., 85.5)"
+                      min="0"
+                      max="100"
+                      step="0.01"
+                    />
+                    {percentileError && (
+                      <div className="mt-1 text-xs sm:text-sm text-red-600 flex items-center gap-1">
+                        <X className="h-3 w-3 sm:h-4 sm:w-4" />
+                        <span>{percentileError}</span>
+                      </div>
+                    )}
                   </div>
                 </div>
 
-                {/* Special Categories */}
-                <div className="space-y-2 sm:space-y-3">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Special Categories
-                  </label>
-                  <div className="space-y-2 sm:space-y-3">
-                    <label className="flex items-center space-x-3 cursor-pointer group">
-                      <div className="relative">
-                        <input
-                          type="checkbox"
-                          name="isDefence"
-                          checked={filters.isDefence}
-                          onChange={handleFilterChange}
-                          className="sr-only peer"
-                        />
-                        <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-orange-300 rounded peer-checked:bg-[#f68014] peer-checked:border-[#f68014] transition-all duration-200 group-hover:border-orange-400 flex items-center justify-center">
-                          <CheckCircle className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity duration-200" />
-                        </div>
-                      </div>
-                      <span className="text-xs sm:text-sm text-gray-700 group-hover:text-gray-900">
-                        Defence Category
-                      </span>
+                {/* Caste Category - Only show for MHT-CET */}
+                {examType === "MHT-CET" && (
+                  <div className="space-y-2">
+                    <label className="block text-sm font-medium text-gray-700 flex items-center space-x-2">
+                      <Users className="h-4 w-4 text-[#f68014]" />
+                      <span>Select Caste Category</span>
                     </label>
-                    <label className="flex items-center space-x-3 cursor-pointer group">
-                      <div className="relative">
-                        <input
-                          type="checkbox"
-                          name="isPWD"
-                          checked={filters.isPWD}
-                          onChange={handleFilterChange}
-                          className="sr-only peer"
-                        />
-                        <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-orange-300 rounded peer-checked:bg-[#f68014] peer-checked:border-[#f68014] transition-all duration-200 group-hover:border-orange-400 flex items-center justify-center">
-                          <CheckCircle className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity duration-200" />
-                        </div>
-                      </div>
-                      <span className="text-xs sm:text-sm text-gray-700 group-hover:text-gray-900">
-                        Person with Disability (PWD)
-                      </span>
-                    </label>
+                    <div className="relative">
+                      <select
+                        name="caste"
+                        value={filters.caste}
+                        onChange={handleFilterChange}
+                        className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-orange-200 rounded-xl focus:ring-2 focus:ring-[#f68014] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white appearance-none cursor-pointer text-sm sm:text-base"
+                      >
+                        <option value="">-- Select Caste Category --</option>
+                        {casteCategories.map((category) => (
+                          <option key={category.value} value={category.value}>
+                            {category.label}
+                          </option>
+                        ))}
+                      </select>
+                      <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500 pointer-events-none" />
+                    </div>
                   </div>
-                </div>
+                )}
+
+                {/* Special Categories - Only show for MHT-CET */}
+                {examType === "MHT-CET" && (
+                  <div className="space-y-2 sm:space-y-3">
+                    <label className="block text-sm font-medium text-gray-700">
+                      Special Categories
+                    </label>
+                    <div className="space-y-2 sm:space-y-3">
+                      <label className="flex items-center space-x-3 cursor-pointer group">
+                        <div className="relative">
+                          <input
+                            type="checkbox"
+                            name="isDefence"
+                            checked={filters.isDefence}
+                            onChange={handleFilterChange}
+                            className="sr-only peer"
+                          />
+                          <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-orange-300 rounded peer-checked:bg-[#f68014] peer-checked:border-[#f68014] transition-all duration-200 group-hover:border-orange-400 flex items-center justify-center">
+                            <CheckCircle className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity duration-200" />
+                          </div>
+                        </div>
+                        <span className="text-xs sm:text-sm text-gray-700 group-hover:text-gray-900">
+                          Defence Category
+                        </span>
+                      </label>
+                      <label className="flex items-center space-x-3 cursor-pointer group">
+                        <div className="relative">
+                          <input
+                            type="checkbox"
+                            name="isPWD"
+                            checked={filters.isPWD}
+                            onChange={handleFilterChange}
+                            className="sr-only peer"
+                          />
+                          <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-orange-300 rounded peer-checked:bg-[#f68014] peer-checked:border-[#f68014] transition-all duration-200 group-hover:border-orange-400 flex items-center justify-center">
+                            <CheckCircle className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity duration-200" />
+                          </div>
+                        </div>
+                        <span className="text-xs sm:text-sm text-gray-700 group-hover:text-gray-900">
+                          Person with Disability (PWD)
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                )}
 
                 {/* Branch Selection */}
                 <div className="space-y-2">
@@ -838,15 +968,6 @@ function PercentileDisplay() {
                           </div>
                         </div>
                       </div>
-
-                      {college.casteUsed && (
-                        <div className="mb-4">
-                          <span className="bg-orange-50 text-[#f68014] px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium border border-orange-200">
-                            Seat found under:{" "}
-                            <strong>{college.casteUsed}</strong> category
-                          </span>
-                        </div>
-                      )}
 
                       <div className="border-t border-orange-100 pt-4">
                         <h3 className="font-semibold text-gray-800 mb-3 flex items-center space-x-2 text-sm sm:text-base">
