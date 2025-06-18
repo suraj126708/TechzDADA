@@ -109,7 +109,6 @@ function PercentileDisplay() {
       });
     }
 
-    console.log(Array.from(districtsSet).sort());
     setAvailableBranches(Array.from(branchesSet).sort());
     setAvailableDistricts(Array.from(districtsSet).sort());
   }, [capRound, examType]);
