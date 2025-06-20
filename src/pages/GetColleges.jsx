@@ -26,10 +26,11 @@ import Footer from "../Components/Layouts/Footer";
 
 const casteFallbackOrder = {
   NT3: ["NT3", "NT2", "NT1", "OPEN"],
-  NT2: ["NT2", "NT1", "OPEN"],
-  NT1: ["NT1", "OPEN"],
-  VJ: ["VJ", "OPEN"],
+  NT2: ["NT2", "NT1", "NT3", "OPEN"],
+  NT1: ["NT1", "NT2", "NT3", "OPEN"],
+  VJ: ["VJ", "NT1", "NT2", "NT3", "OPEN"],
   OBC: ["OBC", "OPEN"],
+  SEBC: ["SEBC", "OBC", "OPEN"],
   SC: ["SC", "OPEN"],
   ST: ["ST", "OPEN"],
   OPEN: ["OPEN"],
@@ -50,6 +51,10 @@ function PercentileDisplay() {
     { value: "NT2", label: "Nomadic Tribe 2 (NT2)" },
     { value: "NT3", label: "Nomadic Tribe 3 (NT3)" },
     { value: "OBC", label: "Other Backward Class (OBC)" },
+    {
+      value: "SEBC",
+      label: "Socially and Educationally Backward Class (SEBC)",
+    },
     { value: "EWS", label: "Economically Weaker Section (EWS)" },
   ];
 
@@ -226,6 +231,9 @@ function PercentileDisplay() {
         break;
       case "OBC":
         baseCastes = allCastes.filter((caste) => caste.includes("OBC"));
+        break;
+      case "SEBC":
+        baseCastes = allCastes.filter((caste) => caste.includes("SEBC"));
         break;
       case "EWS":
         baseCastes = allCastes.filter((caste) => caste.includes("EWS"));
@@ -435,10 +443,10 @@ function PercentileDisplay() {
               // Check if branch matches any of the selected branches
               const branchMatch =
                 branch.length === 0 || // If no branches selected, show all
-                branch.some((selectedBranch) =>
-                  b.branch_info
-                    .toLowerCase()
-                    .includes(selectedBranch.toLowerCase())
+                branch.some(
+                  (selectedBranch) =>
+                    b.branch_info.trim().toLowerCase() ===
+                    selectedBranch.trim().toLowerCase()
                 );
 
               if (!branchMatch) return false;
@@ -497,10 +505,10 @@ function PercentileDisplay() {
               // Filter branches to only show those that match user's selected branches
               if (branch.length > 0) {
                 branches = branches.filter((b) =>
-                  branch.some((selectedBranch) =>
-                    b.branch_info
-                      .toLowerCase()
-                      .includes(selectedBranch.toLowerCase())
+                  branch.some(
+                    (selectedBranch) =>
+                      b.branch_info.trim().toLowerCase() ===
+                      selectedBranch.trim().toLowerCase()
                   )
                 );
               }
@@ -546,10 +554,10 @@ function PercentileDisplay() {
           const matchingCourses = college.Courses.filter((course) => {
             const branchMatch =
               branch.length === 0 ||
-              branch.some((selectedBranch) =>
-                course["Course Name"]
-                  .toLowerCase()
-                  .includes(selectedBranch.toLowerCase())
+              branch.some(
+                (selectedBranch) =>
+                  course["Course Name"].trim().toLowerCase() ===
+                  selectedBranch.trim().toLowerCase()
               );
 
             if (!branchMatch) return false;
@@ -953,6 +961,14 @@ function PercentileDisplay() {
                               <MapPin className="h-3 w-3 sm:h-4 sm:w-4" />
                               <span>District: {college.district}</span>
                             </p>
+                          )}
+                          {/* Show the category in which seat was found for MHT-CET, styled and responsive under district */}
+                          {college.casteUsed && (
+                            <div className="flex items-center mt-1 mb-2">
+                              <span className="inline-block bg-orange-50 text-orange-700 px-2 py-0.5 rounded-full text-xs sm:text-sm font-medium">
+                                Seat found under: <b>{college.casteUsed}</b>
+                              </span>
+                            </div>
                           )}
                         </div>
 
