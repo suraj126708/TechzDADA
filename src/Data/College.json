@@ -235,5 +235,136 @@
       "Modern Campus Facilities"
     ],
     "whatsappGroup": "https://chat.whatsapp.com/JaiqCJKk4EAKNjbeA9GD20"
+  },
+  {
+    "index": 9,
+    "name": "Sinhgad College of Engineering (SCOE), Pune",
+    "address": "Vadgaon Budruk, Off Sinhgad Road, Pune, Maharashtra 411041",
+    "image": "../../assets/scoe.png",
+    "established": "1996",
+    "intake": "Approx. 960 UG + 108 PG",
+    "description": "SCOE is a private AICTE-approved, NAAC ‘A+’ & NBA accredited institution offering UG, PG, and Ph.D. programs. It’s also a TEQIP-II project institute :contentReference[oaicite:1]{index=1}.",
+    "programs": ["B.Tech", "M.Tech", "MBA", "Ph.D."],
+    "branches": [
+      "Computer Engineering",
+      "Information Technology",
+      "Electronics & Telecommunication Engineering",
+      "Mechanical Engineering",
+      "Civil Engineering",
+      "Chemical Engineering",
+      "Production Engineering",
+      "Biotechnology"
+    ],
+    "highlights": [
+      "NBA & NAAC A+ accreditation",
+      "TEQIP‑II recipient",
+      "3600+ annual intake including PG",
+      "Strong industry and research exposure"
+    ],
+    "whatsappGroup": "https://chat.whatsapp.com/Jy279Obrt1q6jKb9KMEEQu?mode=ac_c"
+  },
+  {
+    "index": 10,
+    "name": "JSPM’s Rajarshi Shahu College of Engineering (RSCOE), Pune",
+    "address": "Survey No. 80, Pune–Mumbai Bypass Highway, Tathawade, Pimpri‑Chinchwad, Pune, Maharashtra 411033",
+    "image": "../../assets/rscoe.jpg",
+    "established": "2001",
+    "intake": "Approx. 900 UG + PG",
+    "description": "RSCOE is an autonomous AICTE‑approved institute, NAAC ‘A’, NBA accredited, and a recognized Ph.D. centre :contentReference[oaicite:2]{index=2}.",
+    "programs": ["B.Tech", "M.Tech", "MBA", "MCA", "Ph.D."],
+    "branches": [
+      "Computer Engineering",
+      "Information Technology",
+      "Electronics & Telecommunication Engineering",
+      "Mechanical Engineering",
+      "Civil Engineering",
+      "Electrical Engineering",
+      "Automation & Robotics",
+      "Computer Science & Business Systems"
+    ],
+    "highlights": [
+      "Autonomous with industry‑aligned curriculum",
+      "NAAC ‘A’ & NBA accredited UG",
+      "Ph.D. research centre",
+      "Ranked 38 nationally (Times Engineering) :contentReference[oaicite:3]{index=3}"
+    ],
+    "whatsappGroup": "https://chat.whatsapp.com/CBysk2LZHRx6W39df6r8e2?mode=ac_c"
+  },
+  {
+    "index": 11,
+    "name": "Dwarkadas Jivanlal Sanghvi College of Engineering (DJSCE), Mumbai",
+    "address": "Plot No. U‑15, J.V.P.D. Scheme, Bhaktivedanta Swami Marg, Vile Parle West, Mumbai, Maharashtra 400056",
+    "image": "../../assets/djsce.jpg",
+    "established": "1994",
+    "intake": "700+ total",
+    "description": "DJSCE is an autonomous, NAAC ‘A’, NBA‑accredited institute under SVKM with strong placement and academic record.",
+    "programs": ["B.Tech", "M.Tech", "Ph.D."],
+    "branches": [
+      "Computer Engineering",
+      "Information Technology",
+      "Electronics & Telecommunication Engineering",
+      "Mechanical Engineering",
+      "Computer Science & Engineering (Data Science)",
+      "Computer Science & Engineering (AI & ML)",
+      "Computer Science & Engineering (IoT, Cybersecurity & Blockchain)"
+    ],
+    "highlights": [
+      "Autonomous till 2028–34",
+      "NAAC ‘A’ & NBA UG",
+      "Placements up to ₹32.67 LPA",
+      "Active technical‑cultural clubs"
+    ],
+    "whatsappGroup": "https://chat.whatsapp.com/BedBe24ynL2Kx1TfJpnB8M?mode=ac_c"
+  },
+  {
+    "index": 12,
+    "name": "All India Shri Shivaji Memorial Society's College of Engineering (AISSMS COE), Pune",
+    "address": "1, Kennedy Road, Near RTO, Pune, Maharashtra 411001",
+    "image": "../../assets/aissms.jpg",
+    "established": "1992",
+    "intake": "≈700+",
+    "description": "AISSMS COE is a NAAC‑accredited, NBA recognized institute affiliated to SPPU, known for academic rigour and campus culture.",
+    "programs": ["B.Tech", "M.Tech", "Ph.D."],
+    "branches": [
+      "Computer Engineering",
+      "Information Technology",
+      "Electronics & Telecommunication Engineering",
+      "Mechanical Engineering",
+      "Electrical Engineering",
+      "Civil Engineering",
+      "Chemical Engineering",
+      "Automobile Engineering"
+    ],
+    "highlights": [
+      "III Cell for industry collaboration",
+      "Strong placement records",
+      "SAE & Robotics teams",
+      "NBA & NAAC accredited",
+      "Ashwamedh & Shivanjali festivals"
+    ],
+    "whatsappGroup": "https://chat.whatsapp.com/JbuGGj2XYYj7fowbZb8kin?mode=ac_c"
+  },
+  {
+    "index": 13,
+    "name": "Sardar Patel Institute of Technology (SPIT), Mumbai",
+    "address": "Bhavan's Campus, Munshi Nagar, Andheri (W), Mumbai, Maharashtra 400058",
+    "image": "../../assets/spit.jpg",
+    "established": "2005",
+    "intake": "480 UG + 96 PG + 70 Ph.D. seats",
+    "description": "SPIT is an autonomous, AICTE‑approved, NAAC & NBA‑accredited institute affiliated with Mumbai University, offering UG, PG & Ph.D. programs :contentReference[oaicite:4]{index=4}.",
+    "programs": ["B.Tech", "M.Tech", "MCA", "Ph.D."],
+    "branches": [
+      "Computer Engineering",
+      "Information Technology",
+      "Electronics & Telecommunication Engineering",
+      "Artificial Intelligence and Machine Learning",
+      "Computer Science and Business Systems"
+    ],
+    "highlights": [
+      "480 B.Tech seats; strong PG & Ph.D. offerings",
+      "Placements up to ₹30.5 LPA, average ₹12.4 LPA :contentReference[oaicite:5]{index=5}",
+      "IEEE, IIC, ARIIA recognition"
+    ],
+    "whatsappGroup": "https://chat.whatsapp.com/FB84RMgdxlFHRAb3DudWLT?mode=ac_c"
   }
 ]
